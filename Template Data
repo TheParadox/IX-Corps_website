@@ -1,0 +1,42 @@
+User:
+	Discord Name
+	Server Name
+	Rank (Rct, Pvt, VPvt, CCpl?, TCpl?, Cpl, Sgt, 1stSgt, SgtMaj, 1stLt, 2ndLt, Cpt, Maj, LtCol, Col, Gen) 
+	Regiment (HQ, 9th, 51st, 28th, Clarks)
+	Company (Staff, A, B, ...) if != Staff, then Company ...
+	Password (this is filled with random string to prevent logging in, once they obtain Cpl, we manually set the password to something easy for them to get in and change)
+	JoinDate
+	DischargedDate
+	ReasonForDischarge
+	Awards[received]
+	Awards[To be awarded]
+	Awards[nominated]
+	Notes[]
+	
+Regiment:
+	Full Name
+	Abriviated Name
+	CO
+	XO
+	SgtMaj
+	ColorSgt
+	Advisors
+	Companies[]
+	
+Company:
+	Regiment
+	Letter
+	CO
+	1stSgt
+	Sgt[]
+	Cpl[]
+	Troops[]
+	
+Rank:
+	Grade
+	Permissions level
+	
+Award:
+	Title
+	
+	
