@@ -12,6 +12,8 @@ User:
 	Awards[To be awarded]
 	Awards[nominated]
 	Notes[]
+	#DrillsAttended
+	#EventsAttended
 	
 Regiment:
 	Full Name
@@ -38,5 +40,32 @@ Rank:
 	
 Award:
 	Title
+	AwardedBy_Regiment
+	AwardedBy_Company
+	AwardCritera
 	
+
+Event: 
+	Date
+	Type (Drill, battle, line, dress parade, ...)
+	MapOneResults
+	MapTwoResults (optional)
+	Leadby (optional)
+	Attendance[for each company]
+	
+MapResults: (Filled in by GoogleSheet?)
+	MapName
+	Side (boolean, true for USA, false for CSA)
+	Victory (boolean, true - we won, false - we lost)
+	OurTotalCasualties
+	TheirTotalCasualties
+	
+Attendance:
+	TotalNumber
+	Attendies[]
+	
+	
+
+
+
 	
