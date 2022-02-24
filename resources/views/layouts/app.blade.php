@@ -17,6 +17,9 @@
                     <a href="{{ route('oob') }}" class="p-3">Order of Battle</a>
                 </li>
                 <li>
+                    <a href="{{ route('listAwards') }}" class="p-3">Accolades</a>
+                </li>
+                <li>
                     <a href="{{ route('engage') }}" class="p-3">Engagements</a>
                 </li>
                 @auth

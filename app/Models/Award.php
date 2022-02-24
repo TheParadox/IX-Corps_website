@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Award extends Model
 {
     use HasFactory;
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'title',
+        'regiment_id',
+        'company_id',
+        'awardCriteria',
+    ];
 }

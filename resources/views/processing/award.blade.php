@@ -49,11 +49,11 @@
                     class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="">
 
                     <option hidden disabled selected value> -- select an option -- </option>
-                    <option value="0-0"></option>
+                    <option value="0-0">Corps Wide</option>
 
                     @if ($data)
-                        @foreach ($data as $reg)   
-                            <option value="{{ $reg['id'] }}">{{ $reg['name'] }}</option>
+                        @foreach ($data as $unit)   
+                            <option value="{{ $unit['id'] }}">{{ $unit['name'] }}</option>
                         @endforeach
                     @endif
 

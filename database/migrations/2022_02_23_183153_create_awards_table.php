@@ -15,6 +15,13 @@ class CreateAwardsTable extends Migration
     {
         Schema::create('awards', function (Blueprint $table) {
             $table->id();
+
+            $table->string('title');
+
+            $table->unsignedBigInteger('regiment_id');
+            $table->unsignedBigInteger('company_id');
+            $table->binary('awardCriteria');
+
             $table->timestamps();
         });
     }

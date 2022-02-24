@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\Pages\AwardController;
 use App\Http\Controllers\Pages\OobController;
 use App\Http\Controllers\Pages\EngageController;
 
@@ -16,6 +17,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Processing\MemberFormController;
 use App\Http\Controllers\Processing\RegimentFormController;
 use App\Http\Controllers\Processing\CompanyFormController;
+use App\Http\Controllers\Processing\AwardFormController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +44,8 @@ Route::get('/reg/{reg}', [RegimentController::class, 'index'])->name('regiment')
 //post version for updating
 Route::get('/comp/{comp}', [CompanyController::class, 'index'])->name('company');
 //post version for updating
+Route::get('/awards', [AwardController::class, 'index'])->name('listAwards');
+Route::get('/awards/{award}', [AwardController::class, 'specific'])->name('specificAward');
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
@@ -65,3 +69,7 @@ Route::post('/procCompany', [CompanyFormController::class, 'store']);
 Route::get('/procCompany/{company}', [CompanyFormController::class, 'edit'])->name('editCompany');
 Route::post('/procCompany/{company}', [CompanyFormController::class, 'update']);
 
+Route::get('/procAward', [AwardFormController::class, 'index'])->name('newAward');
+Route::post('/procAward', [AwardFormController::class, 'store']);
+Route::get('/procAward/{award}', [AwardFormController::class, 'edit'])->name('editAward');
+Route::post('/procAward/{award}', [AwardFormController::class, 'update']);
