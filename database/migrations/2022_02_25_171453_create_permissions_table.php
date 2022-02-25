@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRanksTable extends Migration
+class CreatePermissionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateRanksTable extends Migration
      */
     public function up()
     {
-        Schema::create('ranks', function (Blueprint $table) {
+        Schema::create('permissions', function (Blueprint $table) {
             $table->id();
 
-            $table->string('grade');
-            $table->string('abrv');
-            $table->string('icon')->default('None');
+            $table->string('name');
             $table->integer('level');
 
             $table->timestamps();
@@ -32,6 +30,6 @@ class CreateRanksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ranks');
+        Schema::dropIfExists('permissions');
     }
 }

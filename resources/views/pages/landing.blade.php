@@ -6,8 +6,6 @@
     <div class="flex justify-center">    
         <div class="w-8/12 bg-white p-6 rounded-lg">
             Blurb about IX-Corps, with a 'join us button' somewhere that links to the discord
-
-            <a href="{{ route('member', ['member' => 1]) }}">Demo User</a>
         </div>
     </div>
 @endsection

@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Regiment;
 use App\Models\Company;
 use App\Models\Rank;
+use App\Models\Permission;
 
 use Carbon\Carbon;
 use App\Http\Controllers\Controller;
@@ -19,10 +20,12 @@ class IndividualController extends Controller
         $this->middleware(['auth']);
     }
 
-    public function index(Request $request, $member)
+    public function index(Request $request, $memberID)
     {
         //$data = DB::table('users')->where('id', $member)->first();
-        $data = User::findOrFail($member);
+        $data = User::findOrFail($memberID);
+
+        $perm = Permission::find($data->permissions);
 
         if($data->isDischarged){
             $data->status = 'Discharged';
@@ -61,6 +64,6 @@ class IndividualController extends Controller
         $data->tis = Carbon::parse($data->dateJoined)->longAbsoluteDiffForHumans();
 
 
-        return view('unit.individual')->with('data', $data);
+        return view('unit.individual')->with('data', $data)->with('perm', $perm);
     }
 }

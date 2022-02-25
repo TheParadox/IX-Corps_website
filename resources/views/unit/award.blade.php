@@ -4,7 +4,7 @@
     
 @section('content')
     <div class="flex justify-center">    
-        <div class="w-8/12  p-6 rounded-lg">
+        <div class="w-8/12 bg-white p-6 rounded-lg">
 
             <ul>
                 <li>
@@ -15,12 +15,12 @@
                     @if ($data['regID'] == 0)
                         Available to the whole Corps
                     @else
-                        <a href="{{ route('regiment', ['reg' => $data['regID']]) }}" class="text-blue-700">{{ $data['regName'] }}</a>
+                        <a href="{{ route('regiment', ['regimentID' => $data['regID']]) }}" class="text-blue-700">{{ $data['regName'] }}</a>
 
                         @if ($data['compID'] == 0)
                             Regimental
                         @else
-                            - <a href="{{ route('company', ['comp' => $data['compID']]) }}" class="text-blue-700">{{ $data['compID'] }}</a>
+                            - <a href="{{ route('company', ['companyID' => $data['compID']]) }}" class="text-blue-700">{{ $data['compID'] }}</a>
                         @endif
                     @endif
                 </li>

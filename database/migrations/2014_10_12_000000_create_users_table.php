@@ -16,21 +16,24 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+
+            $table->unsignedBigInteger('permissions')->default(0);
+
             $table->string('email')->unique()->nullable();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('password')->default('NotYetSet');
 
             $table->string('discordName');
             $table->string('companyToolName');
             $table->date('dateJoined');
             $table->date('dateDischarged')->nullable();
-            $table->text('reasonForDischarge');
+            $table->text('reasonForDischarge')->nullable();
             $table->boolean('isDischarged')->default(0);
 
             $table->boolean('isLOA')->default(0);
             $table->date('startLOA')->nullable();
             $table->date('endLOA')->nullable();
-            $table->text('reasonForLOA');
+            $table->text('reasonForLOA')->nullable();
             $table->unsignedBigInteger('loaGranter')->default(0);
 
             //$table->foreignId('regiment_id');
@@ -42,7 +45,7 @@ class CreateUsersTable extends Migration
             //$table->foreign('company_id')->references('id')->on('companies');
 
             //$table->foreignId('rank_id');
-            $table->unsignedBigInteger('rank_id')->default(0);
+            $table->unsignedBigInteger('rank_id')->default(1);
             //$table->foreign('rank_id')->references('id')->on('ranks');
 
             //still need awards...

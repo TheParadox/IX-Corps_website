@@ -15,7 +15,11 @@
                 </li>
                 @endif
 
-                @if ((auth()->user()->id == $data->id) || (auth()->user()->rank > 3))
+                @if ($perm->level >= 1)
+                    Permissions: {{ $perm->name }}
+                @endif
+
+                @if ((auth()->user()->id == $data->id) || (auth()->user()->permissions > 1))
                     <li>
                         Discord Name: {{$data->discordName}}
                     </li>
@@ -55,7 +59,7 @@
 
                 @if ($data->regiment_id > 0)
                     <li>
-                        Regiment: <a href="{{ route('regiment', ['reg' => $data->regiment_id]) }}" class="text-blue-700">{{ $data->regiment_name }}</a> 
+                        Regiment: <a href="{{ route('regiment', ['regimentID' => $data->regiment_id]) }}" class="text-blue-700">{{ $data->regiment_name }}</a> 
                     </li>
                 @else
                     <li>
@@ -64,7 +68,7 @@
                 @endif
                 @if ($data->company_id > 0)
                     <li>
-                        Company: <a href="{{ route('company', ['comp' => $data->company_id]) }}" class="text-blue-700">{{ $data->company_name }}</a>
+                        Company: <a href="{{ route('company', ['companyID' => $data->company_id]) }}" class="text-blue-700">{{ $data->company_name }}</a>
                     </li>
                 @else
                     <li>

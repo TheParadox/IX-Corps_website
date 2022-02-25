@@ -54,12 +54,12 @@ class AwardFormController extends Controller
         return redirect()->route('specificAward', ['award', $award->id]);
     }
 
-    public function edit(Request $request, $member)
+    public function edit(Request $request, $memberID)
     {
         
     }
 
-    public function update(Request $request, $member)
+    public function update(Request $request, $memberID)
     {
         
     }

@@ -12,11 +12,11 @@ use Illuminate\Http\Request;
 
 class CompanyController extends Controller
 {
-    public function index(Request $request, $comp)
+    public function index(Request $request, $companyID)
     {
         $ranks = Rank::all()->toArray();
 
-        $data = Company::findOrFail($comp);
+        $data = Company::findOrFail($companyID);
 
         $regiment = Regiment::find($data->regiment_id);
 

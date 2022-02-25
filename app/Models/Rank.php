@@ -18,6 +18,6 @@ class Rank extends Model
         'grade',
         'abrv',
         'icon',
-        'permissionsLevel',
+        'level',
     ];
 }

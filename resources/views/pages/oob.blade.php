@@ -10,7 +10,7 @@
                 <div class=" bg-blue-100 pb-6 mb-4 rounded-lg">
                     <ul>
                         <li>
-                            Name: <a href="{{ route('regiment', ['reg' => $reg['id']]) }}" class="text-blue-700">{{ $reg['name'] }}</a>
+                            Name: <a href="{{ route('regiment', ['regimentID' => $reg['id']]) }}" class="text-blue-700">{{ $reg['name'] }}</a>
                         </li>
                         <li>
                             Type: {{ $reg['type'] }}
@@ -26,7 +26,7 @@
                             <ul class="ml-5">
                             @foreach ($reg['companies'] as $comp)   
                                 <li>
-                                    <a href="{{ route('company', ['comp' => $comp['id'] ]) }}" class="text-blue-700">{{ $comp['name'] }} Company</a>, with {{ $comp['strength'] }} {{ $reg['descriptor'] }}
+                                    <a href="{{ route('company', ['companyID' => $comp['id'] ]) }}" class="text-blue-700">{{ $comp['name'] }} Company</a>, with {{ $comp['strength'] }} {{ $reg['descriptor'] }}
                                 </li>
                             @endforeach
                             </ul>

@@ -20,6 +20,9 @@
                     <a href="{{ route('listAwards') }}" class="p-3">Accolades</a>
                 </li>
                 <li>
+                    <a href="{{ route('listRanks') }}" class="p-3">Ranks</a>
+                </li>
+                <li>
                     <a href="{{ route('engage') }}" class="p-3">Engagements</a>
                 </li>
                 @auth
@@ -32,7 +35,7 @@
             <ul class="flex items-center">
                 @auth
                     <li>
-                        <a href="{{ route('member', ['member' => auth()->user()->id]) }}" class="p-3">{{ auth()->user()->name }}</a>
+                        <a href="{{ route('member', ['memberID' => auth()->user()->id]) }}" class="p-3">{{ auth()->user()->name }}</a>
                     </li>
                     <form action="{{ route('logout') }}" method="POST" >
                         @csrf

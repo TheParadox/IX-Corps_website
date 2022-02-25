@@ -73,12 +73,12 @@ class CompanyFormController extends Controller
         return redirect()->route('company', ['comp' => $newCompany->id]);
     }
 
-    public function edit(Request $request, $company)
+    public function edit(Request $request, $companyID)
     {
         
     }
 
-    public function update(Request $request, $company)
+    public function update(Request $request, $companyID)
     {
         
     }

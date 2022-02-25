@@ -9,6 +9,12 @@
             <nav class="p-4 pb-10 bg-white flex justify-between">
                 <ul class="flex items-center">
                     <li>
+                        <a href="{{ route('newMember') }}" class="p-3">New Member</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('newAward') }}" class="p-3">New Award</a>
+                    </li>
+                    <li>
                         <a href="{{ route('newRegiment') }}" class="p-3">New Regiment</a>
                     </li>
                     <li>
@@ -17,10 +23,7 @@
                         </div>
                     </li>
                     <li>
-                        <a href="{{ route('newAward') }}" class="p-3">New Award</a>
-                    </li>
-                    <li>
-                        <a href="{{ route('newMember') }}" class="p-3">New Member</a>
+                        <a href="{{ route('newRank') }}" class="p-3">New Rank</a>
                     </li>
                 </ul>
     

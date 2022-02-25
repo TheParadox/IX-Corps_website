@@ -15,15 +15,15 @@
                         <a href="{{ route('newAward') }}" class="p-3">New Award</a>
                     </li>
                     <li>
-                        <div class="bg-blue-200 border-2 w-full rounded-lg">
-                            <a href="{{ route('newRegiment') }}" class="p-3">New Regiment</a>
-                        </div>
+                        <a href="{{ route('newRegiment') }}" class="p-3">New Regiment</a>
                     </li>
                     <li>
                         <a href="{{ route('newCompany') }}" class="p-3">New Company</a>
                     </li>
                     <li>
-                        <a href="{{ route('newRank') }}" class="p-3">New Rank</a>
+                        <div class="bg-blue-200 border-2 w-full rounded-lg">
+                            <a href="{{ route('newRank') }}" class="p-3">New Rank</a>
+                        </div>
                     </li>
                 </ul>
     
@@ -31,15 +31,15 @@
 
 
 
-            <form method="POST" action="{{ route('newRegiment') }}">
+            <form method="POST" action="{{ route('newRank') }}">
                 @csrf
 
                 <div class="mb-4">
-                    <label for="name" class="">Name:</label>
-                    <input type="text" name="name" id="name" placeholder="Full Regiment Name"
-                    class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('name') border-red-500 @enderror" value="{{ old('name') }}">
+                    <label for="title" class="">Title:</label>
+                    <input type="text" name="title" id="title" placeholder="Name of the Rank"
+                    class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('title') border-red-500 @enderror" value="{{ old('title') }}">
 
-                    @error('name')
+                    @error('title')
                         <div class="text-red-500 mt-2 text-sm">
                             {{ $message }}
                         </div>
@@ -47,8 +47,8 @@
                 </div>
 
                 <div class="mb-4">
-                    <label for="abrv" class="">Unit Abreviation:</label>
-                    <input type="text" name="abrv" id="abrv" placeholder="Shortened version of the unit name"
+                    <label for="abrv" class="">Abbreviation:</label>
+                    <input type="text" name="abrv" id="abrv" placeholder="What is the shortended version of the rank?"
                     class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('abrv') border-red-500 @enderror" value="{{ old('abrv') }}">
 
                     @error('abrv')
@@ -59,23 +59,16 @@
                 </div>
 
                 <div class="mb-4">
-                    <label for="type" class="">Unit Type:</label>
-                    <input type="text" name="type" id="type" placeholder="Type of unit: Infantry, Artillery, etc..."
-                    class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('type') border-red-500 @enderror" value="{{ old('type') }}">
+                    <label for="level" class="">Level:</label>
+                    <input type="number" name="level" id="level" placeholder="What level is this rank at?"
+                    class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('level') border-red-500 @enderror" value="{{ old('level') }}">
 
-                    @error('type')
+                    @error('level')
                         <div class="text-red-500 mt-2 text-sm">
                             {{ $message }}
                         </div>
                     @enderror
                 </div>
-
-                <div class="mb-4">
-                    <label for="descriptor" class="">Descriptor of troops:</label>
-                    <input type="text" name="descriptor" id="descriptor" placeholder="Describing the troops: Rifles, Crew, Troops, etc..."
-                    class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="{{ old('descriptor') }}">
-                </div>
-
 
                 <div class="mb-4">
                     <input type="hidden" name="createdBy" id="createdBy" value="{{ auth()->user()->id }}">

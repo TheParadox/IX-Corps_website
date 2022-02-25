@@ -43,16 +43,16 @@ class RegimentFormController extends Controller
         return redirect()->route('regiment', ['reg' => $newRegiment->id]);
     }
 
-    public function edit(Request $request, $regiment)
+    public function edit(Request $request, $regimentID)
     {
 
 
         return view('');
     }
 
-    public function update(Request $request, $regiment)
+    public function update(Request $request, $regimentID)
     {
 
-        return redirect()->route('regiment', ['reg' => $regiment]);
+        return redirect()->route('regiment', ['regiment' => $regimentID]);
     }
 }

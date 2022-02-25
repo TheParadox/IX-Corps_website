@@ -24,7 +24,7 @@ class LoginController extends Controller
             return back()->with('status', 'Invalid login details');
         }
 
-        return redirect()->route('member', ['member' => auth()->user()->id]);
+        return redirect()->route('member', ['memberID' => auth()->user()->id]);
     }
 
     public function logout(Request $request)

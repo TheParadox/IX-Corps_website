@@ -21,7 +21,7 @@
                 <li>
                     CO: 
                     @if ($data->co_name)
-                        <a href="{{ route('member', ['member' => $data->co_id]) }}" class="text-blue-700">{{ $data->co_name }}</a>
+                        <a href="{{ route('member', ['memberID' => $data->co_id]) }}" class="text-blue-700">{{ $data->co_name }}</a>
                     @else
                         Vacant
                     @endif
@@ -29,7 +29,7 @@
                 <li>
                     XO: 
                 @if ($data->xo_name)
-                    <a href="{{ route('member', ['member' => $data->xo_id]) }}" class="text-blue-700">{{ $data->xo_name }}</a>
+                    <a href="{{ route('member', ['memberID' => $data->xo_id]) }}" class="text-blue-700">{{ $data->xo_name }}</a>
                 @else
                     Vacant
                 @endif
@@ -38,7 +38,7 @@
                 <li>
                     SgtMaj: 
                     @if ($data->sgtmaj_name)
-                        <a href="{{ route('member', ['member' => $data->sgtMaj_id]) }}" class="text-blue-700">{{ $data->sgtmaj_name }}</a>
+                        <a href="{{ route('member', ['memberID' => $data->sgtMaj_id]) }}" class="text-blue-700">{{ $data->sgtmaj_name }}</a>
                     @else
                         Vacant
                     @endif
@@ -55,7 +55,7 @@
                         @if ($advisors)
                             @foreach ($advisors as $adv)   
                                 <li>
-                                    <a href="{{ route('member', ['member' => $adv['id'] ]) }}" class="text-blue-700">{{ $adv['name'] }}</a>
+                                    <a href="{{ route('member', ['memberID' => $adv['id'] ]) }}" class="text-blue-700">{{ $adv['name'] }}</a>
                                 </li>
                             @endforeach
                         @endif
@@ -70,7 +70,7 @@
                         @if ($companies)
                             @foreach ($companies as $comp)   
                                 <li>
-                                    <a href="{{ route('company', ['comp' => $comp['id'] ]) }}" class="text-blue-700">{{ $comp['name'] }} Company</a>, with {{ $comp['troops'] }} {{ $data->descriptor }}
+                                    <a href="{{ route('company', ['companyID' => $comp['id'] ]) }}" class="text-blue-700">{{ $comp['name'] }} Company</a>, with {{ $comp['troops'] }} {{ $data->descriptor }}
                                 </li>
                             @endforeach
                         @endif

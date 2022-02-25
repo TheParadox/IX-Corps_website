@@ -43,34 +43,34 @@ class AwardController extends Controller
         return view('pages.awardsList')->with('data', $data);
     }
 
-    public function specific(Request $request, $award)
+    public function specific(Request $request, $awardID)
     {
         $data = array();
-        $awardResult = Award::find($award);        
+        $award = Award::find($awardID);        
         
         $regiments = Regiment::all()->toArray();
         $companies = Company::all()->toArray();
 
 
-        if($awardResult === null){
+        if($award === null){
             return redirect()->route('listAwards');
         } else {
-            $data['id'] = $awardResult['id'];
-            $data['title'] = $awardResult['title'];
-            $data['regID'] = $awardResult['regiment_id'];
-            if($awardResult['regiment_id'] == 0){
+            $data['id'] = $award['id'];
+            $data['title'] = $award['title'];
+            $data['regID'] = $award['regiment_id'];
+            if($award['regiment_id'] == 0){
                 $data['regName'] = null;
             } else {
-                $data['regName'] = $regiments[$awardResult['regiment_id'] - 1]['name'];
+                $data['regName'] = $regiments[$award['regiment_id'] - 1]['name'];
             }
 
-            $data['compID'] = $awardResult['company_id'];
-            if($awardResult['company_id'] == 0){
+            $data['compID'] = $award['company_id'];
+            if($award['company_id'] == 0){
                 $data['compName'] = null;
             } else {
-                $data['compName'] = $companies[$awardResult['company_id'] - 1]['letter'];
+                $data['compName'] = $companies[$award['company_id'] - 1]['letter'];
             }
-            $data['criteria'] = $awardResult['awardCriteria'];
+            $data['criteria'] = $award['awardCriteria'];
 
         }
 

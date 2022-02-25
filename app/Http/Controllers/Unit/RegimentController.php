@@ -14,9 +14,9 @@ use App\Models\Company;
 
 class RegimentController extends Controller
 {
-    public function index(Request $request, $reg)
+    public function index(Request $request, $regimentID)
     {
-        $data = Regiment::findOrFail($reg);
+        $data = Regiment::findOrFail($regimentID);
 
         $regStrength = 0;
         $co = User::find($data->co_id);

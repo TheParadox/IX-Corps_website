@@ -9,18 +9,21 @@
             <nav class="p-4 pb-10 bg-white flex justify-between">
                 <ul class="flex items-center">
                     <li>
+                        <div class="bg-blue-200 border-2 w-full rounded-lg">
+                            <a href="{{ route('newMember') }}" class="p-3">New Member</a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="{{ route('newAward') }}" class="p-3">New Award</a>
+                    </li>
+                    <li>
                         <a href="{{ route('newRegiment') }}" class="p-3">New Regiment</a>
                     </li>
                     <li>
                         <a href="{{ route('newCompany') }}" class="p-3">New Company</a>
                     </li>
                     <li>
-                        <a href="{{ route('newAward') }}" class="p-3">New Award</a>
-                    </li>
-                    <li>
-                        <div class="bg-blue-200 border-2 w-full rounded-lg">
-                            <a href="{{ route('newMember') }}" class="p-3">New Member</a>
-                        </div>
+                        <a href="{{ route('newRank') }}" class="p-3">New Rank</a>
                     </li>
                 </ul>
     

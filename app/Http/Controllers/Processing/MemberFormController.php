@@ -87,30 +87,13 @@ class MemberFormController extends Controller
 
         $newUser = User::create([
             'name' => $request->name,
-            'email' => null,
-            'password' => 'NotYetSet',
     
             'discordName' => $request->discordName,
             'companyToolName' => $request->companyToolName,
             'dateJoined' => $request->joinDate,
-            'dateDischarged' => null,
-            'reasonForDischarge' => '',
-            'isDischarged' => 0,
-    
-            'isLOA' => 0,
-            'startLOA' => null,
-            'endLOA' => null,
-            'reasonForLOA' => '',
-            'loaGranter' => 0,
     
             'regiment_id' => $regID,
             'company_id' => $compID,
-            'rank_id' => 1,
-    
-            'numberDrillsAttended' => 0,
-            'numberOfEventsAttended' => 0,
-            'lastDrill' => null,
-            'lastEvent' => null,
     
             'recruiter_id' => $recID,
             'processor_id' => $procID,
@@ -124,30 +107,19 @@ class MemberFormController extends Controller
         $company->troops = $troops;
         $company->save();
 
-
-        /*$newUser = User::create();
-        $newUser->name = $request->name;
-        $newUser->password = Hash::make($request->password);
-        $newUser->adminApproved = false;
-        $newUser->approvalAdmin = 0;
-        $newUser->adminLevel = 0;*/
-        //save the child to the parent...
-        //$newUser->userProfile()->save($profile);
-        //$newUser->save();
-
-        return redirect()->route('member', ['member' => $newUser->id]);
+        return redirect()->route('member', ['memberID' => $newUser->id]);
     }
 
-    public function edit(Request $request, $member)
+    public function edit(Request $request, $memberID)
     {
+        $member = User::find($memberID);
 
-
-        return view('');
+        return view('editing.member')->with('data', $member);
     }
 
-    public function update(Request $request, $member)
+    public function update(Request $request, $memberID)
     {
 
-        return redirect()->route('member', ['member' => $member]);
+        return redirect()->route('member', ['memberID' => $member]);
     }
 }
