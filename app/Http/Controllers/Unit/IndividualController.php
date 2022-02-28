@@ -25,7 +25,7 @@ class IndividualController extends Controller
         //$data = DB::table('users')->where('id', $member)->first();
         $data = User::findOrFail($memberID);
 
-        $perm = Permission::find($data->permissions);
+        $perm = Permission::where('level', auth()->user()->permissions)->first();
 
         if($data->isDischarged){
             $data->status = 'Discharged';

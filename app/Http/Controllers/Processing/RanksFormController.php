@@ -6,13 +6,16 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\Rank;
+use App\Models\Permission;
 
 class RanksFormController extends Controller
 {
     public function index()
     {
-        
-        return view('processing.rank');
+        $perms = Permission::all()->toArray();
+        $userPerm = Permission::find(auth()->user()->permissions);
+
+        return view('processing.rank')->with('perms', $perms)->with('userPerm', $userPerm);
     }
 
     public function store(Request $request)

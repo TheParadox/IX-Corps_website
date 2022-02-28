@@ -70,7 +70,7 @@ class CompanyFormController extends Controller
         $regiment->save();
 
 
-        return redirect()->route('company', ['comp' => $newCompany->id]);
+        return redirect()->route('company', ['companyID' => $newCompany->id]);
     }
 
     public function edit(Request $request, $companyID)

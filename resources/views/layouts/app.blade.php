@@ -26,9 +26,11 @@
                     <a href="{{ route('engage') }}" class="p-3">Engagements</a>
                 </li>
                 @auth
-                    <li>
-                        <a href="{{ route('newMember') }}" class="p-3">Processing</a>
-                    </li>
+                    @if (auth()->user()->permissions > 0)
+                        <li>
+                            <a href="{{ route('newMember') }}" class="p-3">Processing</a>
+                        </li>
+                    @endif
                 @endauth
             </ul>
 

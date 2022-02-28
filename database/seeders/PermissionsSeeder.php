@@ -15,6 +15,11 @@ class PermissionsSeeder extends Seeder
     public function run()
     {
         DB::table('permissions')->insert([
+            'name' => 'Enlisted',
+            'level' => 0
+        ]);
+
+        DB::table('permissions')->insert([
             'name' => 'NCO',
             'level' => 1
         ]);

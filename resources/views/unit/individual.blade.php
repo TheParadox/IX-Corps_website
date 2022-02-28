@@ -15,9 +15,7 @@
                 </li>
                 @endif
 
-                @if ($perm->level >= 1)
-                    Permissions: {{ $perm->name }}
-                @endif
+                Permissions: {{ $perm->name }}
 
                 @if ((auth()->user()->id == $data->id) || (auth()->user()->permissions > 1))
                     <li>
@@ -91,7 +89,13 @@
                 <li>
                     Last Event: {{$data->lastEvent}}
                 </li>
+
             </ul>
+            @if (($perm->level > 2) || ($data->id == auth()->user()->id))
+                <div class="pt-4">
+                    <a href="{{ route('editMember', ['memberID' => $data->id]) }}" class="text-blue-600">Edit</a>
+                </div>
+            @endif
 
         </div>
     </div>

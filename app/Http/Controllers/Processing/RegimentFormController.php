@@ -40,7 +40,7 @@ class RegimentFormController extends Controller
 
 
 
-        return redirect()->route('regiment', ['reg' => $newRegiment->id]);
+        return redirect()->route('regiment', ['regimentID' => $newRegiment->id]);
     }
 
     public function edit(Request $request, $regimentID)
@@ -53,6 +53,6 @@ class RegimentFormController extends Controller
     public function update(Request $request, $regimentID)
     {
 
-        return redirect()->route('regiment', ['regiment' => $regimentID]);
+        return redirect()->route('regiment', ['regimentID' => $regimentID]);
     }
 }

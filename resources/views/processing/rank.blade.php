@@ -59,15 +59,25 @@
                 </div>
 
                 <div class="mb-4">
-                    <label for="level" class="">Level:</label>
-                    <input type="number" name="level" id="level" placeholder="What level is this rank at?"
-                    class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('level') border-red-500 @enderror" value="{{ old('level') }}">
+                    <label for="level" class="">Permissions Level:</label>
+                    <select type="select" name="level" id="level" placeholder="level"
+                    class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="">
 
-                    @error('level')
-                        <div class="text-red-500 mt-2 text-sm">
-                            {{ $message }}
-                        </div>
-                    @enderror
+                        <option hidden disabled selected value> -- select an option -- </option>
+
+                        @foreach ($perms as $perm)  
+                            @if ($perm['level'] <= $userPerm->level)
+                                <option value="{{ $perm['id'] }}">{{ $perm['name'] }}</option>
+                            @endif
+                        @endforeach
+
+
+                        @error('level')
+                            <div class="text-red-500 mt-2 text-sm">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </select>
                 </div>
 
                 <div class="mb-4">

@@ -94,7 +94,7 @@ class MemberFormController extends Controller
     
             'regiment_id' => $regID,
             'company_id' => $compID,
-    
+
             'recruiter_id' => $recID,
             'processor_id' => $procID,
         ]);
@@ -110,7 +110,7 @@ class MemberFormController extends Controller
         return redirect()->route('member', ['memberID' => $newUser->id]);
     }
 
-    public function edit(Request $request, $memberID)
+    public function edit($memberID)
     {
         $member = User::find($memberID);
 
@@ -119,7 +119,119 @@ class MemberFormController extends Controller
 
     public function update(Request $request, $memberID)
     {
+        $member = User::find($memberID);
 
-        return redirect()->route('member', ['memberID' => $member]);
+        if($request->has('name')){
+            if($member->name != $request->name){
+                $member->name = $request->name;
+            }
+        }
+        if($request->has('permissions')){
+            if($member->permissions != $request->permissions){
+                $member->permissions = $request->permissions;
+            }
+        }
+
+
+        if($request->has('email')){
+            if($member->email != $request->email){
+                $member->email = $request->email;
+            }
+        }
+        if($request->has('password')){
+            if($member->password != $request->password){
+                $member->password = $request->password;
+            }
+        }
+
+        if($request->has('discordName')){
+            if($member->discordName != $request->discordName){
+                $member->discordName = $request->discordName;
+            }
+        }
+        if($request->has('companyToolName')){
+            if($member->companyToolName != $request->companyToolName){
+                $member->companyToolName = $request->companyToolName;
+            }
+        }
+
+        if($request->has('dateJoined')){
+            if($member->dateJoined != $request->dateJoined){
+                $member->dateJoined = $request->dateJoined;
+            }
+        }
+        if($request->has('dateDischarged')){
+            if($member->dateDischarged != $request->dateDischarged){
+                $member->dateDischarged = $request->dateDischarged;
+            }
+        }
+        if($request->has('reasonForDischarge')){
+            if($member->reasonForDischarge != $request->reasonForDischarge){
+                $member->reasonForDischarge = $request->reasonForDischarge;
+            }
+        }
+        if($request->has('isDischarged')){
+            if($member->isDischarged != $request->isDischarged){
+                $member->isDischarged = $request->isDischarged;
+            }
+        }
+
+        if($request->has('isLOA')){
+            if($member->isLOA != $request->isLOA){
+                $member->isLOA = $request->isLOA;
+            }
+        }
+        if($request->has('startLOA')){
+            if($member->startLOA != $request->startLOA){
+                $member->startLOA = $request->startLOA;
+            }
+        }
+        if($request->has('endLOA')){
+            if($member->endLOA != $request->endLOA){
+                $member->endLOA = $request->endLOA;
+            }
+        }
+        if($request->has('reasonForLOA')){
+            if($member->reasonForLOA != $request->reasonForLOA){
+                $member->reasonForLOA = $request->reasonForLOA;
+            }
+        }
+        if($request->has('loaGranter')){
+            if($member->loaGranter != $request->loaGranter){
+                $member->loaGranter = $request->loaGranter;
+            }
+        }
+
+
+        if($request->has('regiment_id')){
+            if($member->regiment_id != $request->regiment_id){
+                $member->regiment_id = $request->regiment_id;
+            }
+        }
+        if($request->has('company_id')){
+            if($member->company_id != $request->company_id){
+                $member->company_id = $request->company_id;
+            }
+        }
+        if($request->has('rank_id')){
+            if($member->rank_id != $request->rank_id){
+                $member->rank_id = $request->rank_id;
+            }
+        }
+
+        if($request->has('recruiter_id')){
+            if($member->recruiter_id != $request->recruiter_id){
+                $member->recruiter_id = $request->recruiter_id;
+            }
+        }
+        if($request->has('processor_id')){
+            if($member->processor_id != $request->processor_id){
+                $member->processor_id = $request->processor_id;
+            }
+        }
+
+        $member->save();
+
+        return redirect()->route('member', ['memberID' => $memberID]);
     }
 }

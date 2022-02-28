@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Permission extends Model
 {
     use HasFactory;
+
+    public $timestamps = true;
+    
     /**
      * The attributes that are mass assignable.
      *
