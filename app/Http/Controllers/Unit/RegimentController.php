@@ -63,12 +63,13 @@ class RegimentController extends Controller
         for($i = 0; $i < count($comp['comp']); $i++){
 
             $compMod = Company::find($comp['comp'][$i]);
-            if($compMod !== null && $compMod->isActive){
+            if($compMod !== null){
                 $companies[$t]['id'] = $comp['comp'][$i];
                 $companies[$t]['name'] = $compMod->letter;
                 $rifles = json_decode($compMod->troops, true);
                 $companies[$t]['troops'] = count($rifles['troops']);
                 $regStrength += count($rifles['troops']);
+                $companies[$t]['active'] = $compMod->isActive;
                 $t++;
             }
         }

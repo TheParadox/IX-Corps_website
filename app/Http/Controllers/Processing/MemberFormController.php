@@ -114,7 +114,21 @@ class MemberFormController extends Controller
     {
         $member = User::find($memberID);
 
-        return view('editing.member')->with('data', $member);
+        $processor = User::find($member->processor_id);
+        if($processor === null){
+            $proc = '';
+        } else {
+            $proc = $processor->name;
+        }
+
+        $recruiter = User::find($member->recruiter_id);
+        if($recruiter === null){
+            $rec = '';
+        } else {
+            $rec = $recruiter->name;
+        }
+
+        return view('editing.member')->with('data', $member)->with('proc', $proc)->with('rec', $rec);
     }
 
     public function update(Request $request, $memberID)
@@ -219,15 +233,27 @@ class MemberFormController extends Controller
             }
         }
 
-        if($request->has('recruiter_id')){
-            if($member->recruiter_id != $request->recruiter_id){
-                $member->recruiter_id = $request->recruiter_id;
+        if($request->has('recruiter')){                
+            $recruiter = User::where('name', $request->recruiter)->first();
+            if($recruiter === null){
+                //$recID = 0;
+            } else {         
+                if($member->recruiter_id != $recruiter->id){
+                    $member->recruiter_id = $recruiter->id;
+                }
             }
+
         }
-        if($request->has('processor_id')){
-            if($member->processor_id != $request->processor_id){
-                $member->processor_id = $request->processor_id;
+        if($request->has('processor')){                
+            $processor = User::where('name', $request->processor)->first();
+            if($processor === null){
+                //$procID = 0;
+            } else {          
+                if($member->processor_id != $processor->id){
+                    $member->processor_id = $processor->id;
+                }
             }
+
         }
 
         $member->save();

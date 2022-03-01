@@ -20,7 +20,7 @@
                         @if ($data['compID'] == 0)
                             Regimental
                         @else
-                            - <a href="{{ route('company', ['companyID' => $data['compID']]) }}" class="text-blue-700">{{ $data['compID'] }}</a>
+                            - <a href="{{ route('company', ['companyID' => $data['compID']]) }}" class="text-blue-700">{{ $data['compName'] }}</a>
                         @endif
                     @endif
                 </li>
@@ -29,6 +29,11 @@
                 </li>
 
             </ul>
+            @if (auth()->user()->permissions > 1)
+                <div class="pt-4">
+                    <a href="{{ route('editAward', ['awardID' => $data['id'] ]) }}" class="text-blue-600">Edit</a>
+                </div>
+            @endif
 
         </div>
     </div>

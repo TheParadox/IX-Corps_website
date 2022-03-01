@@ -73,7 +73,7 @@ Route::post('/procAward/{awardID}', [AwardFormController::class, 'update']);
 Route::get('/procReg', [RegimentFormController::class, 'index'])->name('newRegiment');
 Route::post('/procReg', [RegimentFormController::class, 'store']);
 Route::get('/procReg/{regimentID}', [RegimentFormController::class, 'edit'])->name('editRegiment');
-Route::post('procReg/{regimentID}', [RegimentFormController::class, 'update']);
+Route::post('/procReg/{regimentID}', [RegimentFormController::class, 'update']);
 
 Route::get('/procCompany', [CompanyFormController::class, 'index'])->name('newCompany');
 Route::post('/procCompany', [CompanyFormController::class, 'store']);
@@ -83,4 +83,4 @@ Route::post('/procCompany/{companyID}', [CompanyFormController::class, 'update']
 Route::get('/procRank', [RanksFormController::class, 'index'])->name('newRank');
 Route::post('/procRank', [RanksFormController::class, 'store']);
 Route::get('/procRank/{rankID}', [RanksFormController::class, 'edit'])->name('editRank');
-Route::post('procRank/{rankID]', [RanksFormController::class, 'update']);
+Route::post('/procRank/{rankID}', [RanksFormController::class, 'update']);

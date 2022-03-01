@@ -16,7 +16,7 @@ class AdminSeeder extends Seeder
     {
         DB::table('users')->insert([
             'name' => 'Admin',
-            'permissions' => 7,
+            'permissions' => 10,
             'password' => '$2y$10$GemHR1WIY7oMs4opF2EquOeMiL47DLezoucSI1OUMqx/VeCmh8Pmy',
 
             'discordName' => '',

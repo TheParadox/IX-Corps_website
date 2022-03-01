@@ -13,18 +13,26 @@
                             <a href="{{ route('newMember') }}" class="p-3">New Member</a>
                         </div>
                     </li>
-                    <li>
-                        <a href="{{ route('newAward') }}" class="p-3">New Award</a>
-                    </li>
-                    <li>
-                        <a href="{{ route('newRegiment') }}" class="p-3">New Regiment</a>
-                    </li>
-                    <li>
-                        <a href="{{ route('newCompany') }}" class="p-3">New Company</a>
-                    </li>
-                    <li>
-                        <a href="{{ route('newRank') }}" class="p-3">New Rank</a>
-                    </li>
+                    @if (auth()->user()->permissions > 1)
+                        <li>
+                            <a href="{{ route('newAward') }}" class="p-3">New Award</a>
+                        </li>
+                    @endif
+                    @if (auth()->user()->permissions > 4)
+                        <li>
+                            <a href="{{ route('newRegiment') }}" class="p-3">New Regiment</a>
+                        </li>
+                    @endif
+                    @if (auth()->user()->permissions > 3)
+                        <li>
+                            <a href="{{ route('newCompany') }}" class="p-3">New Company</a>
+                        </li>
+                    @endif
+                    @if (auth()->user()->permissions > 2)
+                        <li>
+                            <a href="{{ route('newRank') }}" class="p-3">New Rank</a>
+                        </li>
+                    @endif
                 </ul>
     
             </nav>

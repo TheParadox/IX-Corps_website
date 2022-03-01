@@ -70,6 +70,9 @@
                         @if ($companies)
                             @foreach ($companies as $comp)   
                                 <li>
+                                    @if ($comp['active'] == 0)
+                                        Disbanded: 
+                                    @endif
                                     <a href="{{ route('company', ['companyID' => $comp['id'] ]) }}" class="text-blue-700">{{ $comp['name'] }} Company</a>, with {{ $comp['troops'] }} {{ $data->descriptor }}
                                 </li>
                             @endforeach

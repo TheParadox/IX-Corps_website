@@ -13,6 +13,14 @@
                     Regiment: <a href="{{ route('regiment', ['regimentID' => $regiment->id]) }}" class="text-blue-700">{{ $regiment->name }}</a>
                 </li>
                 <li>
+                    Status: 
+                    @if ($data->isActive)
+                        Combat Ready
+                    @else
+                        Disbanded
+                    @endif
+                </li>
+                <li>
                     CO: 
                     @if ($data->co_name)
                         <a href="{{ route('member', ['memberID' => $data->co_id]) }}" class="text-blue-700">{{ $data->co_name }}</a>
@@ -71,6 +79,14 @@
                     </ul>
                 @endif
             </ul>
+
+
+            @if (auth()->user()->permissions > 3)
+                <div class="pt-4">
+                    <a href="{{ route('editCompany', ['companyID' => $data['id'] ]) }}" class="text-blue-600">Edit</a>
+                </div>
+            @endif
+
         </div>
     </div>
 @endsection

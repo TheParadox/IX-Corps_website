@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Processing;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 use App\Models\Regiment;
 use App\Models\Company;
@@ -75,12 +76,76 @@ class CompanyFormController extends Controller
 
     public function edit(Request $request, $companyID)
     {
-        
+        $data = Company::find($companyID);
+
+        $reg = array();
+        $r = 0;
+        $regiments = Regiment::all()->toArray();
+        foreach($regiments as $regiment){
+            if($regiment !== null){
+                $reg[$r]['id'] = $regiment['id'];
+                $reg[$r]['name'] = $regiment['name'];
+                $reg[$r]['abrv'] = $regiment['abrv'];
+
+                $r++;
+            }
+        }
+
+        return view('editing.company')->with('data', $data)->with('regiments', $reg);
     }
 
     public function update(Request $request, $companyID)
     {
+        $this->validate($request, [
+            'regiment' => ['required', 'integer'],
+            'letter' => ['required', 'max:255'],
+        ]);
         
+        $company = Company::find($companyID);
+
+        self::updateRegiment($company->regiment_id, $request->regiment, $companyID);
+
+        $company->regiment_id = $request->regiment;
+        $company->letter = $request->letter;
+        if($request->has('isActive')){
+            $company->isActive = true;
+        } else {
+            $company->isActive = false;
+        }
+
+
+        $company->save();
+
+        return redirect()->route('company', ['companyID' => $companyID]);
+
     }
 
+    private function updateRegiment($oldRegiment, $newRegiment, $companyID)
+    {
+        $oldReg = Regiment::find($oldRegiment);
+        $newReg = Regiment::find($newRegiment);
+
+        $oldJson = json_decode($oldReg->companies, true);
+        $newJson = json_decode($newReg->companies, true);
+
+        $indexToRemove = -1;
+        for($i = 0; $i < sizeof($oldJson['comp']); $i++){
+            if($oldJson['comp'][$i] == $companyID){
+                $indexToRemove = $i;
+            }
+        }
+        if($indexToRemove > -1){
+            unset($oldJson['comp'][$indexToRemove]);
+        }
+
+        $oldReg->companies = $oldJson;
+        $oldReg->save();
+
+        $newJson['comp'][] = (int)$companyID;
+        $newReg->companies = $newJson;
+        $newReg->save();
+
+        DB::table('users')->where('company_id', $companyID)->update(['regiment_id' => $newRegiment]);
+
+    }
 }

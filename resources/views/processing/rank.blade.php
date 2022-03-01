@@ -11,20 +11,28 @@
                     <li>
                         <a href="{{ route('newMember') }}" class="p-3">New Member</a>
                     </li>
-                    <li>
-                        <a href="{{ route('newAward') }}" class="p-3">New Award</a>
-                    </li>
-                    <li>
-                        <a href="{{ route('newRegiment') }}" class="p-3">New Regiment</a>
-                    </li>
-                    <li>
-                        <a href="{{ route('newCompany') }}" class="p-3">New Company</a>
-                    </li>
-                    <li>
-                        <div class="bg-blue-200 border-2 w-full rounded-lg">
-                            <a href="{{ route('newRank') }}" class="p-3">New Rank</a>
-                        </div>
-                    </li>
+                    @if (auth()->user()->permissions > 1)
+                        <li>
+                            <a href="{{ route('newAward') }}" class="p-3">New Award</a>
+                        </li>
+                    @endif
+                    @if (auth()->user()->permissions > 4)
+                        <li>
+                            <a href="{{ route('newRegiment') }}" class="p-3">New Regiment</a>
+                        </li>
+                    @endif
+                    @if (auth()->user()->permissions > 3)
+                        <li>
+                            <a href="{{ route('newCompany') }}" class="p-3">New Company</a>
+                        </li>
+                    @endif
+                    @if (auth()->user()->permissions > 2)
+                        <li>
+                            <div class="bg-blue-200 border-2 w-full rounded-lg">
+                                <a href="{{ route('newRank') }}" class="p-3">New Rank</a>
+                            </div>
+                        </li>
+                    @endif
                 </ul>
     
             </nav>
@@ -66,7 +74,7 @@
                         <option hidden disabled selected value> -- select an option -- </option>
 
                         @foreach ($perms as $perm)  
-                            @if ($perm['level'] <= $userPerm->level)
+                            @if ($perm['level'] <= auth()->user()->Permissions)
                                 <option value="{{ $perm['id'] }}">{{ $perm['name'] }}</option>
                             @endif
                         @endforeach

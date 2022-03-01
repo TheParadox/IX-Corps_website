@@ -33,7 +33,7 @@ class OobController extends Controller
 
                 $c = 0;
                 foreach($companies as $comp){
-                    if(($comp['regiment_id'] == $reg['id']) && ($comp['isActive'])){
+                    if(($comp['regiment_id'] == $reg['id']) ){
                         $oob[$r]['companies'][$c]['id'] = $comp['id'];
                         $oob[$r]['companies'][$c]['name'] = $comp['letter'];
                         $oob[$r]['companies'][$c]['strength'] = (
@@ -42,6 +42,7 @@ class OobController extends Controller
                             count(json_decode($comp['troops'], true)['troops'])
                         );
                         $oob[$r]['strength'] += $oob[$r]['companies'][$c]['strength'];
+                        $oob[$r]['companies'][$c]['active'] = $comp['isActive'];
                         $c++;
                     }
                 }

@@ -48,37 +48,40 @@
                     @enderror
                 </div>
 
-                <!-- <div class="mb-4">
-                    <label for="joinDate" class="">Date Joined:</label>
-                    <input type="date" name="joinDate" id="joinDate" placeholder="Date Joined"
-                    class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="{{-- $member['dateJoined'] --}}">
-                </div>
+                @if (auth()->user()->permissions > 3)
+                    <div class="mb-4">
+                        <label for="joinDate" class="">Date Joined:</label>
+                        <input type="date" name="joinDate" id="joinDate" placeholder="Date Joined"
+                        class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="{{ $data['dateJoined'] }}">
+                    </div>
 
-                
+                    
 
-                <div class="mb-4">
-                    <label for="recruiter" class="">Recruiter:</label>
-                    <input type="text" name="recruiter" id="recruiter" placeholder="Recruiters Display Name"
-                    class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('recruiter') border-red-500 @enderror" value="{{-- old('recruiter') --}}">
+                    <div class="mb-4">
+                        <label for="recruiter" class="">Recruiter:</label>
+                        <input type="text" name="recruiter" id="recruiter" placeholder="Recruiters Display Name"
+                        class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('recruiter') border-red-500 @enderror" value="{{ $rec }}">
 
-                    @error('recruiter')
-                        <div class="text-red-500 mt-2 text-sm">
-                            {{-- $message --}}
-                        </div>
-                    @enderror
-                </div>
+                        @error('recruiter')
+                            <div class="text-red-500 mt-2 text-sm">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
 
-                <div class="mb-4">
-                    <label for="processor" class="">Processor:</label>
-                    <input type="text" name="processor" id="processor" placeholder="Processors Display Name"
-                    class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('processor') border-red-500 @enderror" value="{{-- old('processor') --}}">
+                    <div class="mb-4">
+                        <label for="processor" class="">Processor:</label>
+                        <input type="text" name="processor" id="processor" placeholder="Processors Display Name"
+                        class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('processor') border-red-500 @enderror" value="{{ $proc }}">
 
-                    @error('processor')
-                        <div class="text-red-500 mt-2 text-sm">
-                            {{-- $message --}}
-                        </div>
-                    @enderror
-                </div> -->
+                        @error('processor')
+                            <div class="text-red-500 mt-2 text-sm">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                    
+                @endif
 
                 <button type="submit" class="bg-blue-500 text-white px-4 py-3 rounded font-medium w-full">Update</button>
             </form>

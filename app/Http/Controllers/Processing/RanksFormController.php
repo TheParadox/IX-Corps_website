@@ -13,9 +13,8 @@ class RanksFormController extends Controller
     public function index()
     {
         $perms = Permission::all()->toArray();
-        $userPerm = Permission::find(auth()->user()->permissions);
 
-        return view('processing.rank')->with('perms', $perms)->with('userPerm', $userPerm);
+        return view('processing.rank')->with('perms', $perms);
     }
 
     public function store(Request $request)
@@ -24,7 +23,6 @@ class RanksFormController extends Controller
             'title' => ['required', 'max:255'],
             'abrv' => ['required', 'max:25'],
             'level' => ['required', 'integer'],
-            'createdBy' => ['required', 'integer'],
         ]);
 
         $rank = Rank::create([
@@ -38,11 +36,29 @@ class RanksFormController extends Controller
 
     public function edit(Request $request, $rankID)
     {
-        
+        $data = Rank::find($rankID);
+        $perms = Permission::all()->toArray();
+
+        return view('editing.rank')->with('data', $data)->with('perms', $perms);
     }
 
     public function update(Request $request, $rankID)
     {
         
+        $this->validate($request, [
+            'title' => ['required', 'max:255'],
+            'abrv' => ['required', 'max:25'],
+            'level' => ['required', 'integer'],
+        ]);
+
+        $rank = Rank::find($rankID);
+
+        $rank->grade = $request->title;
+        $rank->abrv = $request->abrv;
+        $rank->level = $request->level;
+
+        $rank->save();
+
+        return redirect()->route('specificRank', ['rankID' => $rankID]);
     }
 }
