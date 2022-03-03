@@ -136,16 +136,17 @@ class CompanyFormController extends Controller
         }
         if($indexToRemove > -1){
             unset($oldJson['comp'][$indexToRemove]);
+            
+            $oldReg->companies = $oldJson;
+            $oldReg->save();
+    
+            $newJson['comp'][] = (int)$companyID;
+            $newReg->companies = $newJson;
+            $newReg->save();
+    
+            DB::table('users')->where('company_id', $companyID)->update(['regiment_id' => $newRegiment]);
         }
 
-        $oldReg->companies = $oldJson;
-        $oldReg->save();
-
-        $newJson['comp'][] = (int)$companyID;
-        $newReg->companies = $newJson;
-        $newReg->save();
-
-        DB::table('users')->where('company_id', $companyID)->update(['regiment_id' => $newRegiment]);
 
     }
 }

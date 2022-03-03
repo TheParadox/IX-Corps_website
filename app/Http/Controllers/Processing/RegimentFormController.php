@@ -38,20 +38,33 @@ class RegimentFormController extends Controller
             'createdBy' => $request->createdBy,
         ]);
 
-
-
         return redirect()->route('regiment', ['regimentID' => $newRegiment->id]);
     }
 
     public function edit(Request $request, $regimentID)
     {
+        $regiment = Regiment::find($regimentID);
 
-
-        return view('');
+        return view('editing.regiment')->with('data', $regiment);
     }
 
     public function update(Request $request, $regimentID)
     {
+        $this->validate($request, [
+            'name' => ['required', 'max:255'],
+            'abrv' => ['required', 'max:255'],
+            'type' => ['required', 'max:255'],
+            'descriptor' => ['required', 'max:255'],
+        ]);
+
+        $regiment = Regiment::find($regimentID);
+
+        $regiment->name = $request->name;
+        $regiment->abrv = $request->abrv;
+        $regiment->type = $request->type;
+        $regiment->descriptor = $request->descriptor;
+
+        $regiment->save();
 
         return redirect()->route('regiment', ['regimentID' => $regimentID]);
     }

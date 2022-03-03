@@ -21,6 +21,11 @@ use App\Http\Controllers\Processing\RegimentFormController;
 use App\Http\Controllers\Processing\CompanyFormController;
 use App\Http\Controllers\Processing\RanksFormController;
 
+use App\Http\Controllers\Nominations\NominateAwardsFormController;
+use App\Http\Controllers\Nominations\NominateRanksFormController;
+use App\Http\Controllers\Nominations\NominatePositionsFormController;
+use App\Http\Controllers\Nominations\NominateUnitsFormController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -84,3 +89,26 @@ Route::get('/procRank', [RanksFormController::class, 'index'])->name('newRank');
 Route::post('/procRank', [RanksFormController::class, 'store']);
 Route::get('/procRank/{rankID}', [RanksFormController::class, 'edit'])->name('editRank');
 Route::post('/procRank/{rankID}', [RanksFormController::class, 'update']);
+
+
+//////////////////////
+
+Route::get('/nomAward', [NominateAwardsFormController::class, 'index'])->name('nominateAward');
+Route::post('/nomAward', [NominateAwardsFormController::class, 'store']);
+Route::get('/nomAward/{nominationID}', [NominateAwardsFormController::class, 'edit'])->name('editAwardNomination');
+Route::post('/nomAward/{nominationID}', [NominateAwardsFormController::class, 'update']);
+
+Route::get('/nomPos', [NominatePositionsFormController::class, 'index'])->name('nominatePosition');
+Route::post('/nomPos', [NominatePositionsFormController::class, 'store']);
+Route::get('/nomPos/{nominationID}', [NominatePositionsFormController::class, 'edit'])->name('editPositionNomination');
+Route::post('/nomPos/{nominationID}', [NominatePositionsFormController::class, 'update']);
+
+Route::get('/nomRank', [NominateRanksFormController::class, 'index'])->name('nominateRank');
+Route::post('/nomRank', [NominateRanksFormController::class, 'store']);
+Route::get('/nomRank/{nominationID}', [NominateRanksFormController::class, 'edit'])->name('editRankNomination');
+Route::post('/nomRank/{nominationID}', [NominateRanksFormController::class, 'update']);
+
+Route::get('/nomUnit', [NominateUnitsFormController::class, 'index'])->name('nominateUnit');
+Route::post('/nomUnit', [NominateUnitsFormController::class, 'store']);
+Route::get('/nomUnit/{nominationID}', [NominateUnitsFormController::class, 'edit'])->name('editUnitNomination');
+Route::post('/nomUnit/{nominationID}', [NominateUnitsFormController::class, 'update']);

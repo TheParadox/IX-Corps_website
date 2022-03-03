@@ -81,6 +81,13 @@
                 @endif
 
             </ul>
+
+            @if (auth()->user()->permissions > 3)
+                <div class="pt-4">
+                    <a href="{{ route('editRegiment', ['regimentID' => $data['id'] ]) }}" class="text-blue-600">Edit</a>
+                </div>
+            @endif
+
         </div>
     </div>
 @endsection
