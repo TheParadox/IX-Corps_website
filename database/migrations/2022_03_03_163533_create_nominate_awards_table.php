@@ -16,6 +16,9 @@ class CreateNominateAwardsTable extends Migration
         Schema::create('nominate_awards', function (Blueprint $table) {
             $table->id();
 
+            $table->integer('requiredApprovalPermission')->default(10);
+            $table->unsignedBigInteger('unitID')->default(0);
+
             $table->unsignedBigInteger('nominee')->default(0);
             $table->unsignedBigInteger('award')->default(0);
             $table->binary('reason')->nullable();
@@ -25,6 +28,7 @@ class CreateNominateAwardsTable extends Migration
 
             $table->unsignedBigInteger('nominator');
 
+            //need a nominated and reviewed dates
 
             $table->timestamps();
         });

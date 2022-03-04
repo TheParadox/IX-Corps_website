@@ -86,6 +86,12 @@
                 <div class="pt-4">
                     <a href="{{ route('editRegiment', ['regimentID' => $data['id'] ]) }}" class="text-blue-600">Edit</a>
                 </div>
+
+                @if (auth()->user()->regiment_id == $data['id'])
+                    <div class="pt-4">
+                        <a href="{{ route('editRegiment', ['regimentID' => $data['id'] ]) }}" class="text-blue-600">Edit</a>
+                    </div>
+                @endif
             @endif
 
         </div>

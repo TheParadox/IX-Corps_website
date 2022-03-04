@@ -16,6 +16,8 @@ class NominateAward extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'requiredApprovalPermission',
+        'unitID',
         'nominee',
         'award',
         'reason',

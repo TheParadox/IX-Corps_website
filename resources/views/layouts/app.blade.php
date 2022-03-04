@@ -37,7 +37,13 @@
             <ul class="flex items-center">
                 @auth
                     <li>
-                        <a href="{{ route('member', ['memberID' => auth()->user()->id]) }}" class="p-3">{{ auth()->user()->name }}</a>
+                        <a href="{{ route('regiment', ['regimentID' => auth()->user()->regiment_id]) }}" class="p-3 pr-2">{{ auth()->user()::getRegimentAbrv() }}</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('company', ['companyID' => auth()->user()->company_id]) }}" class="p-3 pl-2 pr-2">{{ auth()->user()::getCompanyAbrv() }}</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('member', ['memberID' => auth()->user()->id]) }}" class="p-3 pl-2">{{ auth()->user()::getRankAbrv() }} {{ auth()->user()->name }}</a>
                     </li>
                     <form action="{{ route('logout') }}" method="POST" >
                         @csrf

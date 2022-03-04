@@ -46,17 +46,12 @@ Route::get('/engage', [EngageController::class, 'index'])->name('engage');
 
 
 Route::get('/member/{memberID}', [IndividualController::class, 'index'])->name('member');
-//post version for updating
 Route::get('/reg/{regimentID}', [RegimentController::class, 'index'])->name('regiment');
-//post version for updating
 Route::get('/comp/{companyID}', [CompanyController::class, 'index'])->name('company');
-//post version for updating
 Route::get('/awards', [AwardController::class, 'index'])->name('listAwards');
 Route::get('/awards/{awardID}', [AwardController::class, 'specific'])->name('specificAward');
-
 Route::get('/ranks', [RanksController::class, 'index'])->name('listRanks');
 Route::get('/ranks/{rankID}', [RanksController::class, 'specific'])->name('specificRank');
-
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
@@ -90,6 +85,24 @@ Route::post('/procRank', [RanksFormController::class, 'store']);
 Route::get('/procRank/{rankID}', [RanksFormController::class, 'edit'])->name('editRank');
 Route::post('/procRank/{rankID}', [RanksFormController::class, 'update']);
 
+
+////////////////////// /{unitType}/{unitID}
+
+Route::get('/awardNom', [AwardNominationsController::class, 'index'])->name('awardNominationsList');
+Route::get('/awardNom/{nominationID}', [AwardNominationsController::class, 'specific'])->name('specificAwardNomination');
+Route::post('/awardNom/{nominationID}', [AwardNominationsController::class, 'reviewed']);
+
+Route::get('/posNom', [PositionNominationsController::class, 'index'])->name('positionsNominationsList');
+Route::get('/posNom/{nominationID}', [PositionNominationsController::class, 'specific'])->name('specificPositionNomination');
+Route::Post('/posNom/{nominationID}', [PositionNominationsController::class, 'reviewed']);
+
+Route::get('/rankNom', [RankNominationsController::class, 'index'])->name('ranksNominationsList');
+Route::get('/rankNom/{nominationID}', [RankNominationsController::class, 'specific'])->name('specificRanksNomination');
+Route::post('/rankNom/{nominationID}', [RankNominationsController::class, 'reviewed']);
+
+Route::get('/unitNom', [UnitNominationsController::class, 'index'])->name('unitNominationsList');
+Route::get('/unitNom/{nominationID}', [UnitNominationsController::class, 'specific'])->name('specificUnitNomination');
+Route::post('/unitNom/{nominationID}', [UnitNominationsController::class, 'reviewed']);
 
 //////////////////////
 
