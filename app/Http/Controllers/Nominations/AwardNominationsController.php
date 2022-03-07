@@ -15,35 +15,45 @@ class AwardNominationsController extends Controller
     public function index()
     {
         switch(auth()->user()->permissions) {
+            case 0:
+                return redirect()->route('home');
+            case 1:
+            case 2:
             case 3:
-                $unitID = auth()->user()->company_id;
+                $search = ['company', '=', auth()->user()->company_id];
                 break;
             case 4:
-                $unitID = auth()->user()->regiment_id;
+                $search = ['regiment', '=', auth()->user()->regiment_id];
                 break;
-            default:
-                $unitID = 0;
+            case 5:
+            case 6:
+            case 7:
+            case 8:
+            case 9:
+                $search = [['regiment', '=', 0], ['company', '=', 0]];
+                break;
+            case 10:
+                $search = [];
                 break;
         }
 
-        $nomination = NominateAward::where(['unitID', '=', $unitID], ['approved', '=', 0])->get();
-        $ranks = Ranks::all()->toArray();
-        //$awards = Award::all()->toArray();
+        $nominations = NominateAward::where($search, ['approved', '=', 0])->get();
+        $ranks = Rank::all()->toArray();
 
         $data = array();
         $r = 0;
-        foreach($nomination as $n){
+        foreach($nominations as $n){
             $nominee = User::find($n['nominee']);
             $nominator = User::find($n['nominator']);
             $award = Award::find($n['award']);
 
             $data[$r]['nominationID'] = $n['id'];
             $data[$r]['userID'] = $nominee['id'];
-            $data[$r]['username'] = $ranks[ $nominee['rank_id'] - 1 ]['abrv'] . $nominee['name'];
+            $data[$r]['username'] = $ranks[ $nominee['rank_id'] - 1 ]['abrv'] . ' ' . $nominee['name'];
             $data[$r]['awardID'] = $award['id'];
-            $data[$r]['awardName'] = $award['name'];
+            $data[$r]['awardName'] = $award['title'];
             $data[$r]['nominatorID'] = $nominator['id'];
-            $data[$r]['nominatorName'] = $ranks[ $nominator['rank_id'] - 1 ]['abrv'] . $nominator['name'];
+            $data[$r]['nominatorName'] = $ranks[ $nominator['rank_id'] - 1 ]['abrv'] . ' ' . $nominator['name'];
             $r++;
         }
 
@@ -53,8 +63,26 @@ class AwardNominationsController extends Controller
     public function specific($nominationID)
     {
         $data = NominateAward::find($nominationID);
+        $ranks = Rank::all()->toArray();
+        $award = Award::find($data['award']);
 
-        return view('nominations.awardSpecific')->with('data', $data);
+        $nominee = User::find($data['nominee']);
+        $nominator = User::find($data['nominator']);
+        $signing = User::find($data['approvedBy']);
+
+
+        $extra = array();
+
+        $extra['nomineeName'] = $ranks[ $nominee['rank_id'] - 1 ]['abrv'] . ' ' . $nominee['name'];
+        $extra['nominatorName'] = $ranks[ $nominator['rank_id'] - 1 ]['abrv'] . ' ' . $nominator['name'];
+        $extra['awardName'] = $award['name'];
+        if($signing === null){
+            $extra['approvedBy'] =  null;
+        } else {
+            $extra['approvedBy'] = $ranks[ $signing['rank_id'] - 1 ]['abrv'] . ' ' . $signing['name'];
+        }
+
+        return view('nominations.awardSpecific')->with('data', $data)->with('extra', $extra);
     }
 
     public function reviewed(Request $request, $nominationID)

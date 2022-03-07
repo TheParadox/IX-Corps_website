@@ -21,6 +21,11 @@ use App\Http\Controllers\Processing\RegimentFormController;
 use App\Http\Controllers\Processing\CompanyFormController;
 use App\Http\Controllers\Processing\RanksFormController;
 
+use App\Http\Controllers\Nominations\AwardNominationsController;
+use App\Http\Controllers\Nominations\RankNominationsController;
+use App\Http\Controllers\Nominations\PositionNominationsController;
+use App\Http\Controllers\Nominations\UnitNominationsController;
+
 use App\Http\Controllers\Nominations\NominateAwardsFormController;
 use App\Http\Controllers\Nominations\NominateRanksFormController;
 use App\Http\Controllers\Nominations\NominatePositionsFormController;

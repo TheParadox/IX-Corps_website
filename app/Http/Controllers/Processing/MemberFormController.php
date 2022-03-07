@@ -55,16 +55,14 @@ class MemberFormController extends Controller
         ]);
         //, 'date_format:Y-n-j'
 
-        $recruiter = User::find($request->recruiter);
-        //$recruiter = User::where('name', $request->recruiter)->first();
+        $recruiter = User::where('name', $request->recruiter)->first();
         if($recruiter === null){
             $recID = 0;
         } else {
             $recID = $recruiter->id;
         }
 
-        $processor = User::find($request->processor);
-        //$processor = User::where('name', $request->processor)->first();
+        $processor = User::where('name', $request->processor)->first();
         if($processor === null){
             $procID = 0;
         } else {

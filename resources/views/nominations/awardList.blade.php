@@ -18,6 +18,10 @@
                     <li>
                         Nominator: <a href="{{ route('member', ['memberID' => $award['nominatorID']]) }}" class="text-blue-700">{{ $award['nominatorName'] }}</a>
                     </li>
+
+                    <li>
+                        <a href="{{ route('specificAwardNomination', ['nominationID' => $award['nominationID']]) }}" class="text-blue-700">View Full Nomination</a>
+                    </li>
                 </ul>
             </div>
         @endforeach
