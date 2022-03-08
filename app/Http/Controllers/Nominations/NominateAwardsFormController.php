@@ -57,6 +57,34 @@ class NominateAwardsFormController extends Controller
 
     public function update(Request $request, $nominationID)
     {
-        
+        $nomination = NominateAward::find($nominationID);
+
+        //from approval
+        if($request->has('approval')) {
+            if($nomination->approval !== $request->approval){
+                $nomination->approval = $request->approval;
+            }
+        }
+        if($request->has('approvedReason')) {
+            if($nomination->approvedReason !== $request->approvedReason){
+                $nomination->approvedReason = $request->approvedReason;
+            }
+        }
+        if($request->has('approvedBy')) {
+            if($nomination->approvedBy !== $request->approvedBy){
+                $nomination->approvedBy = $request->approvedBy;
+            }
+        }
+
+        $user = User::find($nomination->nominee);
+
+        $earnedAwards = json_decode($user->awards, true);
+
+        $earnedAwards['awards'][] = (int)$nomination->award;
+        $user->awards = $newJson;
+        $user->save();
+    
+
+        $nomination->save();
     }
 }

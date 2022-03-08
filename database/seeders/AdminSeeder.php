@@ -28,6 +28,8 @@ class AdminSeeder extends Seeder
     
             'recruiter_id' => 0,
             'processor_id' => 0,
+            
+            'awards' => "{\"awards\":[]}",
         ]);
     }
 }

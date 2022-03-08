@@ -95,8 +95,10 @@ class MemberFormController extends Controller
 
             'recruiter_id' => $recID,
             'processor_id' => $procID,
-        ]);
 
+            'awards' => "{\"awards\":[]}",
+        ]);
+        
         $newUser->save();
 
 

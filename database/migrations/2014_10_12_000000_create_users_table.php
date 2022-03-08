@@ -49,6 +49,7 @@ class CreateUsersTable extends Migration
             //$table->foreign('rank_id')->references('id')->on('ranks');
 
             //still need awards...
+            $table->json('awards');
 
             $table->integer('numberDrillsAttended')->default(0);
             $table->integer('numberOfEventsAttended')->default(0);
