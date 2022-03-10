@@ -74,7 +74,7 @@
                         <option hidden disabled selected value> -- select an option -- </option>
 
                         @foreach ($perms as $perm)  
-                            @if ($perm['level'] <= auth()->user()->Permissions)
+                            @if ($perm['level'] <= auth()->user()->permissions)
                                 <option value="{{ $perm['id'] }}">{{ $perm['name'] }}</option>
                             @endif
                         @endforeach

@@ -28,6 +28,7 @@ class CreateNominateRanksTable extends Migration
 
             $table->unsignedBigInteger('nominator')->default(0);
             $table->binary('reason');
+            $table->integer('requiredApprovalPermission')->default(10);
 
             $table->timestamps();
         });

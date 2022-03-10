@@ -27,5 +27,6 @@ class NominateRank extends Model
 
         'nominator',
         'reason',
+        'requiredApprovalPermission',
     ];
 }

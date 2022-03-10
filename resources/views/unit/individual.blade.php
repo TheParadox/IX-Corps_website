@@ -78,6 +78,19 @@
                     Rank: {{$data->rank}}
                 </li>
                 <li>
+                    Awards: 
+                    <ul class="ml-5">
+                        @foreach ($awards as $a)
+                            <li>
+                                <a href="{{ route('specificAward', ['awardID' => $a['id']]) }}" class="text-blue-700">{{ $a['name'] }}</a>
+                                - Awarded: 
+                                <a href="{{ route('specificAwardNomination', ['nominationID' => $a['nomination']]) }}" class="text-blue-700">{{ $a['awarded'] }}</a>
+                            </li>
+                        @endforeach
+                    </ul>
+
+                </li>
+                <li>
                     Number Drills: {{$data->numberDrillsAttended}}
                 </li>
                 <li>

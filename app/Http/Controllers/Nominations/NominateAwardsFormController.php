@@ -60,9 +60,30 @@ class NominateAwardsFormController extends Controller
         $nomination = NominateAward::find($nominationID);
 
         //from approval
-        if($request->has('approval')) {
-            if($nomination->approval !== $request->approval){
-                $nomination->approval = $request->approval;
+        if($request->has('approved')) {
+            if($nomination->approved !== $request->approved){
+                $nomination->approved = $request->approved;
+
+                if($nomination->approved == 1){
+
+                    $user = User::find($nomination->nominee);
+
+                    $earnedAwards = json_decode($user->awards, true);
+
+                    $alreadyEarned = false;
+                    foreach($earnedAwards['awards'] as $ea){
+                        if($ea == $nomination->award){
+                            $alreadyEarned = true;
+                            break;
+                        }
+                    }
+                    
+                    if(!($alreadyEarned)){
+                        $earnedAwards['awards'][] = [(int)$nomination->award, (int)$nominationID];
+                        $user->awards = json_encode($earnedAwards);
+                        $user->save();
+                    }
+                }
             }
         }
         if($request->has('approvedReason')) {
@@ -76,13 +97,6 @@ class NominateAwardsFormController extends Controller
             }
         }
 
-        $user = User::find($nomination->nominee);
-
-        $earnedAwards = json_decode($user->awards, true);
-
-        $earnedAwards['awards'][] = (int)$nomination->award;
-        $user->awards = $newJson;
-        $user->save();
     
 
         $nomination->save();

@@ -45,8 +45,8 @@
                         @csrf
         
                         <div class="mb-4">
-                            <label for="approval" class="">Approve:</label>
-                            <select type="select" name="approval" id="approval" placeholder="approval"
+                            <label for="approved" class="">Approve:</label>
+                            <select type="select" name="approved" id="approved" placeholder="approved"
                             class="bg-gray-100 border-2 p-2 mt-4 rounded-lg " value="">
         
                             <option hidden disabled selected value> -- select an option -- </option>

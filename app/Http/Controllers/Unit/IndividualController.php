@@ -7,6 +7,7 @@ use App\Models\Regiment;
 use App\Models\Company;
 use App\Models\Rank;
 use App\Models\Permission;
+use App\Models\Award;
 
 use Carbon\Carbon;
 use App\Http\Controllers\Controller;
@@ -63,7 +64,19 @@ class IndividualController extends Controller
         //$data->tis = date_diff($joined, $today);
         $data->tis = Carbon::parse($data->dateJoined)->longAbsoluteDiffForHumans();
 
+        $awardsList = Award::all()->toArray();
 
-        return view('unit.individual')->with('data', $data)->with('perm', $perm);
+        $earnedAwards = json_decode($data->awards, true);
+
+        $awards = array();
+        $awardIndex = 0;
+        foreach($earnedAwards['awards'] as $ea){
+            $awards[$awardIndex]['id'] = $ea[0];
+            $awards[$awardIndex]['name'] = $awardsList[$ea[0] - 1]['title'];
+            $awards[$awardIndex]['nomination'] = $ea[1];
+            $awards[$awardIndex]['awarded'] = "1/1/2020"; //get from nomination...
+            $awardIndex++;
+        }
+        return view('unit.individual')->with('data', $data)->with('perm', $perm)->with('awards', $awards);
     }
 }

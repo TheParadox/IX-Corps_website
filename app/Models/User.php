@@ -76,6 +76,7 @@ class User extends Authenticatable
         'company_id',
         'rank_id',
 
+        'awards',
         'numberDrillsAttended',
         'numberOfEventsAttended',
         'lastDrill',
