@@ -22,7 +22,7 @@ class NominateRank extends Model
 
         'rankID',
         'approved',
-        'reviewed',
+        'approvedBy',
         'coReason',
 
         'nominator',

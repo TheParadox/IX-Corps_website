@@ -23,7 +23,7 @@ class CreateNominateRanksTable extends Migration
 
             $table->unsignedBigInteger('rankID')->default(0);
             $table->integer('approved')->default(0);
-            $table->boolean('reviewed')->default(false);
+            $table->boolean('approvedBy')->default(false);
             $table->binary('coReason')->nullable();
 
             $table->unsignedBigInteger('nominator')->default(0);

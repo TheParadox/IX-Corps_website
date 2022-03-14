@@ -32,11 +32,6 @@
                             Unknown Approval Code!
                         @endif
                     </li>
-                    @if ($data['approvedReason'] !== null)       
-                        <li>
-                            Notes: {{ $data['approvedReason'] }}
-                        </li>
-                    @endif
 
                 </ul>
 
@@ -50,8 +45,17 @@
                             class="bg-gray-100 border-2 p-2 mt-4 rounded-lg " value="">
         
                             <option hidden disabled selected value> -- select an option -- </option>
-                            <option value="1">Approved</option>
-                            <option value="2">Denied</option>
+                            <option value="1"
+                                @if ($data['approved'] == 1)
+                                    selected
+                                @endif
+                            >Approved</option>
+
+                            <option value="2"                                
+                                @if ($data['approved'] == 2)
+                                    selected
+                                @endif
+                            >Denied</option>
         
                             </select>
                         </div>
@@ -60,7 +64,7 @@
                         <div class="mb-4">
                             <label for="approvedReason" class="">Reason:</label>
                             <textarea name="approvedReason" id="approvedReason" placeholder="(Optional) Feedback on why it was or wasn't accepted"
-                            class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('approvedReason') border-red-500 @enderror" value="{{ old('approvedReason') }}"></textarea>
+                            class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('approvedReason') border-red-500 @enderror" >@if ($data['approvedReason'] !== null){{ $data['approvedReason'] }}@else{{ old('approvedReason') }}@endif</textarea>
         
                             @error('approvedReason')
                                 <div class="text-red-500 mt-2 text-sm">

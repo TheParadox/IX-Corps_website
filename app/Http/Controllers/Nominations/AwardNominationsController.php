@@ -75,7 +75,7 @@ class AwardNominationsController extends Controller
 
         $extra['nomineeName'] = $ranks[ $nominee['rank_id'] - 1 ]['abrv'] . ' ' . $nominee['name'];
         $extra['nominatorName'] = $ranks[ $nominator['rank_id'] - 1 ]['abrv'] . ' ' . $nominator['name'];
-        $extra['awardName'] = $award['name'];
+        $extra['awardName'] = $award['title'];
         if($signing === null){
             $extra['approvedBy'] =  null;
         } else {

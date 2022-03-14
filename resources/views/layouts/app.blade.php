@@ -30,6 +30,9 @@
                         <li>
                             <a href="{{ route('newMember') }}" class="p-3">Processing</a>
                         </li>
+                        <li>
+                            <a href="{{ route('nominateAward') }}" class="p-3">Nominations</a>
+                        </li>
                     @endif
                 @endauth
             </ul>

@@ -5,6 +5,33 @@
 @section('content')
     <div class="flex justify-center">     
         <div class="w-8/12 bg-white p-6 rounded-lg">
+            <nav class="p-4 pb-10 bg-white flex justify-between">
+                <ul class="flex items-center">
+                    @if (auth()->user()->permissions > 0)
+                        <li>
+                            <div class="bg-blue-200 border-2 w-full rounded-lg">
+                                <a href="{{ route('nominateAward') }}" class="p-3">Nominate Award</a>
+                            </div>
+                        </li>
+                    @endif
+                    @if (auth()->user()->permissions > 1)
+                        <li>
+                            <a href="{{ route('nominateUnit') }}" class="p-3">Transfer Request</a>
+                        </li>
+                    @endif
+                    @if (auth()->user()->permissions > 2)
+                        <li>
+                            <a href="{{ route('newCompany') }}" class="p-3">Nominate Promotion</a>
+                        </li>
+                    @endif
+                    @if (auth()->user()->permissions > 2)
+                        <li>
+                            <a href="{{ route('newRank') }}" class="p-3">Nominate Position</a>
+                        </li>
+                    @endif
+                </ul>
+    
+            </nav>
 
             <form method="POST" action="{{ route('nominateAward') }}">
                 @csrf
