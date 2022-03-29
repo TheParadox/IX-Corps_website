@@ -19,11 +19,10 @@ class CreateNominatePositionsTable extends Migration
             $table->unsignedBigInteger('nominee')->default(0);
             $table->unsignedBigInteger('regimentID')->default(0);
             $table->unsignedBigInteger('companyID')->default(0);
-            $table->integer('position')->default(0);
+            $table->string('position')->default('');
 
             $table->integer('approval')->default(0);
             $table->unsignedBigInteger('reviewer')->default(0);
-            $table->boolean('reviewed')->default(false);
 
             $table->binary('approvalReason')->nullable();
             $table->binary('nominationReason')->nullable();

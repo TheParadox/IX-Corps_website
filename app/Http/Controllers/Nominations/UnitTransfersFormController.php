@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Nominations;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class NominateUnitsFormController extends Controller
+class UnitTransfersFormController extends Controller
 {
     public function index()
     {

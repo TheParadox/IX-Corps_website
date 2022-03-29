@@ -23,7 +23,6 @@ class NominatePosition extends Model
 
         'approval',
         'reviewer',
-        'reviewed',
 
         'approvalReason',
         'nominationReason',

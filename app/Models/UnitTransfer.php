@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class NominateUnit extends Model
+class UnitTransfer extends Model
 {
     use HasFactory;
     public $timestamps = true;
@@ -18,12 +18,14 @@ class NominateUnit extends Model
     protected $fillable = [
         'transferee',
 
-        'currentUnit',
+        'currentCompany',
+        'currentRegiment',
         'currentCO',
         'currentApproval',
         'currentReason',
 
-        'nextUnit',
+        'nextCompany',
+        'nextRegiment',
         'nextCO',
         'nextApproval',
         'nextReason',

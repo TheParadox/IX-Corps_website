@@ -13,17 +13,19 @@ class CreateNominateUnitsTable extends Migration
      */
     public function up()
     {
-        Schema::create('nominate_units', function (Blueprint $table) {
+        Schema::create('unit_transfers', function (Blueprint $table) {
             $table->id();
 
             $table->unsignedBigInteger('transferee')->default(0);
 
-            $table->unsignedBigInteger('currentUnit')->default(0);
+            $table->unsignedBigInteger('currentCompany')->default(0);
+            $table->unsignedBigInteger('currentRegiment')->default(0);
             $table->unsignedBigInteger('currentCO')->default(0);
             $table->integer('currentApproval')->default(0);
             $table->binary('currentReason')->nullable();
 
-            $table->unsignedBigInteger('nextUnit')->default(0);
+            $table->unsignedBigInteger('nextCompany')->default(0);
+            $table->unsignedBigInteger('nextRegiment')->default(0);
             $table->unsignedBigInteger('nextCO')->default(0);
             $table->integer('nextApproval')->default(0);
             $table->binary('nextReason')->nullable();
@@ -42,6 +44,6 @@ class CreateNominateUnitsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('nominate_units');
+        Schema::dropIfExists('unit_transfers');
     }
 }

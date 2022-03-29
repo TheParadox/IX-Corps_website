@@ -9,14 +9,14 @@
                 <ul class="flex items-center">
                     @if (auth()->user()->permissions > 0)
                         <li>
-                            <div class="bg-blue-200 border-2 w-full rounded-lg">
-                                <a href="{{ route('nominateAward') }}" class="p-3">Nominate Award</a>
-                            </div>
+                            <a href="{{ route('nominateAward') }}" class="p-3">Nominate Award</a>
                         </li>
                     @endif
                     @if (auth()->user()->permissions > 2)
                         <li>
-                            <a href="{{ route('nominateRank') }}" class="p-3">Nominate Promotion</a>
+                            <div class="bg-blue-200 border-2 w-full rounded-lg">
+                                <a href="{{ route('nominateRank') }}" class="p-3">Nominate Promotion</a>
+                            </div>
                         </li>
                     @endif
                     @if (auth()->user()->permissions > 2)
@@ -38,7 +38,7 @@
 
                 <div class="mb-4">
                     <label for="nominee" class="">Nominee:</label>
-                    <input type="text" name="nominee" id="title" placeholder="Who should get the award"
+                    <input type="text" name="nominee" id="title" placeholder="Who should get the promotion"
                     class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('nominee') border-red-500 @enderror" value="{{ old('nominee') }}">
 
                     @error('nominee')
@@ -49,15 +49,15 @@
                 </div>
 
                 <div class="mb-4">
-                    <label for="award" class="">Award:</label>
+                    <label for="award" class="">Rank:</label>
                     <select type="select" name="award" id="award" placeholder="award"
                     class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="">
 
                     <option hidden disabled selected value> -- select an option -- </option>
 
                     @if ($data)
-                        @foreach ($data as $award)   
-                            <option value="{{ $award['id'] }}">{{ $award['title'] }}</option>
+                        @foreach ($data as $rank)   
+                            <option value="{{ $rank['id'] }}">{{ $rank['grade'] }}</option>
                         @endforeach
                     @endif
 
@@ -67,7 +67,7 @@
 
                 <div class="mb-4">
                     <label for="reason" class="">Reason:</label>
-                    <textarea name="reason" id="reason" placeholder="Why they deserve this award?"
+                    <textarea name="reason" id="reason" placeholder="Why they deserve this promotion?"
                     class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('reason') border-red-500 @enderror" value="{{ old('reason') }}"></textarea>
 
                     @error('reason')
@@ -83,7 +83,7 @@
 
 
 
-                <button type="submit" class="bg-blue-500 text-white px-4 py-3 rounded font-medium ">Nominate</button>
+                <button type="submit" class="bg-blue-500 text-white px-4 py-3 rounded font-medium">Nominate</button>
             </form>
 
         </div>

@@ -24,12 +24,12 @@ use App\Http\Controllers\Processing\RanksFormController;
 use App\Http\Controllers\Nominations\AwardNominationsController;
 use App\Http\Controllers\Nominations\RankNominationsController;
 use App\Http\Controllers\Nominations\PositionNominationsController;
-use App\Http\Controllers\Nominations\UnitNominationsController;
+use App\Http\Controllers\Nominations\UnitTransfersController;
 
 use App\Http\Controllers\Nominations\NominateAwardsFormController;
 use App\Http\Controllers\Nominations\NominateRanksFormController;
 use App\Http\Controllers\Nominations\NominatePositionsFormController;
-use App\Http\Controllers\Nominations\NominateUnitsFormController;
+use App\Http\Controllers\Nominations\UnitTransfersFormController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +42,8 @@ use App\Http\Controllers\Nominations\NominateUnitsFormController;
 |
 */
 
+
+//////////MAIN PAGES
 Route::get('/', function () {
     return view('pages.landing');
 })->name('home');
@@ -63,7 +65,7 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('/register', [RegisterController::class, 'index']);
 
-//////////////////////
+//////////////////////PROCESSING NEW/EDIT/UPDATE
 
 Route::get('/procMember', [MemberFormController::class, 'index'])->name('newMember');
 Route::post('/procMember', [MemberFormController::class, 'store']);
@@ -91,7 +93,7 @@ Route::get('/procRank/{rankID}', [RanksFormController::class, 'edit'])->name('ed
 Route::post('/procRank/{rankID}', [RanksFormController::class, 'update']);
 
 
-////////////////////// /{unitType}/{unitID}
+////////////////////// /{unitType}/{unitID} ////////////NOMINATIONS/REQUESTS list/view/approve
 
 Route::get('/awardNom', [AwardNominationsController::class, 'index'])->name('awardNominationsList');
 Route::get('/awardNom/{nominationID}', [AwardNominationsController::class, 'specific'])->name('specificAwardNomination');
@@ -105,12 +107,11 @@ Route::get('/rankNom', [RankNominationsController::class, 'index'])->name('ranks
 Route::get('/rankNom/{nominationID}', [RankNominationsController::class, 'specific'])->name('specificRanksNomination');
 Route::post('/rankNom/{nominationID}', [RankNominationsController::class, 'reviewed']);
 
-Route::get('/unitNom', [UnitNominationsController::class, 'index'])->name('unitNominationsList');
-Route::get('/unitNom/{nominationID}', [UnitNominationsController::class, 'specific'])->name('specificUnitNomination');
-Route::post('/unitNom/{nominationID}', [UnitNominationsController::class, 'reviewed']);
+Route::get('/transfers', [UnitTransfersController::class, 'index'])->name('transfersList');
+Route::get('/transfers/{transferID}', [UnitTransfersController::class, 'specific'])->name('specificTransfer');
+Route::post('/transfers/{transferID}', [UnitTransfersController::class, 'reviewed']);
 
-//////////////////////
-
+////////////////////// NOMINATIONS/REQUESTS create/edit
 Route::get('/nomAward', [NominateAwardsFormController::class, 'index'])->name('nominateAward');
 Route::post('/nomAward', [NominateAwardsFormController::class, 'store']);
 Route::get('/nomAward/{nominationID}', [NominateAwardsFormController::class, 'edit'])->name('editAwardNomination');
@@ -126,7 +127,7 @@ Route::post('/nomRank', [NominateRanksFormController::class, 'store']);
 Route::get('/nomRank/{nominationID}', [NominateRanksFormController::class, 'edit'])->name('editRankNomination');
 Route::post('/nomRank/{nominationID}', [NominateRanksFormController::class, 'update']);
 
-Route::get('/nomUnit', [NominateUnitsFormController::class, 'index'])->name('nominateUnit');
-Route::post('/nomUnit', [NominateUnitsFormController::class, 'store']);
-Route::get('/nomUnit/{nominationID}', [NominateUnitsFormController::class, 'edit'])->name('editUnitNomination');
-Route::post('/nomUnit/{nominationID}', [NominateUnitsFormController::class, 'update']);
+Route::get('/transferReq', [UnitTransfersFormController::class, 'index'])->name('transferRequest');
+Route::post('/transferReq', [UnitTransfersFormController::class, 'store']);
+Route::get('/transferReq/{transferID}', [UnitTransfersFormController::class, 'edit'])->name('editTransferRequest');
+Route::post('/transferReq/{transferID}', [UnitTransfersFormController::class, 'update']);
