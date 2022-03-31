@@ -20,7 +20,7 @@ The purpose of this website is to assist with and help facilitate the tracking a
 Work in-progress.
 
 ## Viewing the code:
-**WHILE the project is not open-source**, if you are new to laravel - take a look around to see how some of the features work. It should be noted that the database connections files are not included, for security reasons.
+**WHILE the project is not freeware**, if you are new to laravel - take a look around to see how some of the features work. It should be noted that the database connections files are not included, for security reasons.
 
 ### URL Routing:
 Can be located in the "routes/web.php" file. 
