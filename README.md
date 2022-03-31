@@ -29,7 +29,7 @@ Can be located in the "routes/web.php" file.
 The models can be found under the "App/Models" folder. Whereas the migrations can be located in the "database/migrations" folder.
 
 ### Views:
-All views can be found within the "resources/views" folder. From there they are broken down by function. Early pages where tossed into folders (pages/processing/unit folders) without much consideration for naming or organization, as such they are subject to change. A naming convention has been set and as time goes on the pages and functions will be renamed, still trying to determine the simplest, easest to navigate + understand convention.
+All views can be found within the "resources/views" folder. From there they are broken down by function. Early pages where tossed into folders (pages/processing/unit folders) without much consideration for naming or organization, as such they are subject to change. A naming convention is still being worked on and as time goes on the pages and functions will be renamed, still trying to determine the simplest, easest to navigate + understand convention.
 
  #### Folders (alphabetical):
   - auth: views that deal with authorization, such as login
