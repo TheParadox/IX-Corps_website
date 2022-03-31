@@ -59,5 +59,3 @@ Database: MySql
 
 Google spreadsheets integration will be investigated in the future as possibly a backup database, or to use data currently entered - to reduce re-entry of some data.
 
-
-#### To-Do List:
