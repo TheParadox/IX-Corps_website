@@ -52,7 +52,9 @@ As this project is not intended to be used by just anyone that finds the github 
 
 ### Components used:
 Web library: Laravel (PHP)
+
 CSS: Tailwindcss
+
 Database: MySql
 
 Google spreadsheets integration will be investigated in the future as possibly a backup database, or to use data currently entered - to reduce re-entry of some data.
