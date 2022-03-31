@@ -1,6 +1,6 @@
-# IX-Corps_website
+# IX-Corps Website
 
-While the repository is set to public - this IS NOT freeware. If you want a similar site, or to use this for your group, please message me.
+While the repository is set to public - this IS **NOT freeware**. If you want a similar site, or to use this for your group, please message me.
 
 ## IX-Corps website overview:
 The purpose of this website is to assist with and help facilitate the tracking and storing records for members of the War of Rights gaming group known as 'IX-Corps' within a single system. The site overall, aims to reduce the number of different OneDrives and Google sheets used to track all the members, awards, and events. Thus reducing paperwork and the chances that members are not properly awarded/credited for any achievements that they may have earned within the community. It should be noted that the project is still a work in progress and not all features have either been designed, implemented or even considered yet. As well, currently implemented features are subject to change based on the requirements of future features.
