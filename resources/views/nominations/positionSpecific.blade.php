@@ -12,7 +12,7 @@
                         Nominee: <a href="{{ route('member', ['memberID' => $data['nominee']]) }}" class="text-blue-700">{{ $extra['nomineeName'] }}</a>
                     </li>
                     <li>
-                        Award: <a href="{{ route('specificAward', ['awardID' => $data['award']]) }}" class="text-blue-700">{{ $extra['awardName'] }}</a>
+                        Position: {{ $data['position'] }} 
                     </li>
                     <li>
                         Nominator: <a href="{{ route('member', ['memberID' => $data['nominator']]) }}" class="text-blue-700">{{ $extra['nominatorName'] }}</a>
@@ -36,7 +36,7 @@
                 </ul>
 
                 @if (auth()->user()->permissions >= $data['requiredApprovalPermission'])
-                    <form method="POST" action="{{ route('editAwardNomination', ['nominationID' => $data['id']]) }}">
+                    <form method="POST" action="{{ route('editPositionNomination', ['nominationID' => $data['id']]) }}">
                         @csrf
         
                         <div class="mb-4">

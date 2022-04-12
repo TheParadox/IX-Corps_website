@@ -78,8 +78,7 @@ class UnitTransfersController extends Controller
             $r++;
         }
 
-        //page not done...
-        //return view('nominations.awardList')->with('data', $data);
+        return view('nominations.transferList')->with('data', $data);
         
     }
 

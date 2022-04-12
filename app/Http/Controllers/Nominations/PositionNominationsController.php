@@ -52,23 +52,66 @@ class PositionNominationsController extends Controller
             $data[$r]['nominationID'] = $n['id'];
             $data[$r]['userID'] = $nominee['id'];
             $data[$r]['username'] = $ranks[ $nominee['rank_id'] - 1 ]['abrv'] . ' ' . $nominee['name'];
-            $data[$r]['position'] = $n['position'];
+
+            $data[$r]['position'] = $this->convertIdToPosition($n['position']);
             $data[$r]['nominatorID'] = $nominator['id'];
             $data[$r]['nominatorName'] = $ranks[ $nominator['rank_id'] - 1 ]['abrv'] . ' ' . $nominator['name'];
             $r++;
         }
 
         //in progress
-        //return view('nominations.awardList')->with('data', $data);
+        return view('nominations.positionList')->with('data', $data);
     }
 
     public function specific(Request $request, $nominationID)
     {
+        $data = NominatePosition::find($nominationID);
+        $ranks = Rank::all()->toArray();
+
+        $nominee = User::find($data['nominee']);
+        $nominator = User::find($data['nominator']);
+        $signing = User::find($data['approvedBy']);
+
+
+        $extra = array();
+
+        $extra['nomineeName'] = $ranks[ $nominee['rank_id'] - 1 ]['abrv'] . ' ' . $nominee['name'];
+        $extra['nominatorName'] = $ranks[ $nominator['rank_id'] - 1 ]['abrv'] . ' ' . $nominator['name'];
+        $data['position'] = $this->convertIdToPosition($data['position']);
+        if($signing === null){
+            $extra['approvedBy'] =  null;
+        } else {
+            $extra['approvedBy'] = $ranks[ $signing['rank_id'] - 1 ]['abrv'] . ' ' . $signing['name'];
+        }
+
+        return view('nominations.positionSpecific')->with('data', $data)->with('extra', $extra);
         
     }
 
     public function reviewed(Request $request, $nominationID)
     {
         
+    }
+
+    private function convertIdToPosition($id)
+    {
+
+        switch($id){
+            case 0:
+                $position = "Enlisted";
+                break;
+            case 1:
+                $position = "Corporal";
+                break;
+            case 2:
+                $position = "Sergeant";
+                break;
+            case 3:
+                $position = "1st Sergeant";
+                break;
+            default:
+        }
+
+        return $position;
     }
 }
