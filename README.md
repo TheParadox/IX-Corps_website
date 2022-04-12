@@ -1,6 +1,6 @@
-# IX-Corps_website
+# IX-Corps Website
 
-While the repository is set to public - this IS NOT freeware. If you want a similar site, or to use this for your group, please message me.
+While the repository is set to public - this IS **NOT freeware**. If you want a similar site, or to use this for your group, please message me.
 
 ## IX-Corps website overview:
 The purpose of this website is to assist with and help facilitate the tracking and storing records for members of the War of Rights gaming group known as 'IX-Corps' within a single system. The site overall, aims to reduce the number of different OneDrives and Google sheets used to track all the members, awards, and events. Thus reducing paperwork and the chances that members are not properly awarded/credited for any achievements that they may have earned within the community. It should be noted that the project is still a work in progress and not all features have either been designed, implemented or even considered yet. As well, currently implemented features are subject to change based on the requirements of future features.
@@ -20,7 +20,7 @@ The purpose of this website is to assist with and help facilitate the tracking a
 Work in-progress.
 
 ## Viewing the code:
-**WHILE the project is not open-source**, if you are new to laravel - take a look around to see how some of the features work. It should be noted that the database connections files are not included, for security reasons.
+**WHILE the project is not freeware**, if you are new to laravel - take a look around to see how some of the features work. It should be noted that the database connections files are not included, for security reasons.
 
 ### URL Routing:
 Can be located in the "routes/web.php" file. 
@@ -29,7 +29,7 @@ Can be located in the "routes/web.php" file.
 The models can be found under the "App/Models" folder. Whereas the migrations can be located in the "database/migrations" folder.
 
 ### Views:
-All views can be found within the "resources/views" folder. From there they are broken down by function. Early pages where tossed into folders (pages/processing/unit folders) without much consideration for naming or organization, as such they are subject to change. A naming convention has been set and as time goes on the pages and functions will be renamed, still trying to determine the simplest, easest to navigate + understand convention.
+All views can be found within the "resources/views" folder. From there they are broken down by function. Early pages where tossed into folders (pages/processing/unit folders) without much consideration for naming or organization, as such they are subject to change. A naming convention is still being worked on and as time goes on the pages and functions will be renamed, still trying to determine the simplest, easest to navigate + understand convention.
 
  #### Folders (alphabetical):
   - auth: views that deal with authorization, such as login
@@ -52,10 +52,10 @@ As this project is not intended to be used by just anyone that finds the github 
 
 ### Components used:
 Web library: Laravel (PHP)
+
 CSS: Tailwindcss
+
 Database: MySql
 
 Google spreadsheets integration will be investigated in the future as possibly a backup database, or to use data currently entered - to reduce re-entry of some data.
 
-
-#### To-Do List:
