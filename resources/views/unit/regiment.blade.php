@@ -83,13 +83,16 @@
             </ul>
 
             @if (auth()->user()->permissions > 3)
-                <div class="pt-4">
-                    <a href="{{ route('editRegiment', ['regimentID' => $data['id'] ]) }}" class="text-blue-600">Edit</a>
-                </div>
 
                 @if (auth()->user()->regiment_id == $data['id'])
                     <div class="pt-4">
                         <a href="{{ route('editRegiment', ['regimentID' => $data['id'] ]) }}" class="text-blue-600">Edit</a>
+                    </div>
+                    <div class="pt-4">
+                        <a href="{{ route('awardNominationsList', ['regimentID' => $data['id'], 'approved' => 0 ]) }}" class="text-blue-600">Pending Awards</a>
+                    </div>
+                    <div class="pt-4">
+                        <a href="{{ route('awardNominationsList', ['regimentID' => $data['id'], 'approved' => 1 ]) }}" class="text-blue-600">Decided Awards</a>
                     </div>
                 @endif
             @endif

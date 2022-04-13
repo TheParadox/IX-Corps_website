@@ -14,7 +14,7 @@ use App\Models\Regiment;
 
 class UnitTransfersController extends Controller
 {
-    public function index()
+    public function index($regiment, $approved)
     {
         switch(auth()->user()->permissions) {
             case 0:
@@ -22,12 +22,15 @@ class UnitTransfersController extends Controller
             case 1:
             case 2:
             case 3:
-                $search = ['currentCompany', '=', auth()->user()->company_id];
-                $orSearch = ['nextCompany', '=', auth()->user()->company_id];
-                break;
             case 4:
-                $search = ['currentRegiment', '=', auth()->user()->regiment_id];
-                $orSearch = ['nextRegiment', '=', auth()->user()->regiment_id];
+                if($regiment == auth()->user()->company_id) {
+                    $search = ['currentCompany', '=', auth()->user()->company_id];
+                } else {
+                    $search = ['nextCompany', '=', auth()->user()->company_id];
+                }
+                //break;
+                //$search = ['currentRegiment', '=', auth()->user()->regiment_id];
+                //$search = ['nextRegiment', '=', auth()->user()->regiment_id];
                 break;
             case 5:
             case 6:
@@ -35,14 +38,14 @@ class UnitTransfersController extends Controller
             case 8:
             case 9:
                 $search = [['currentRegiment', '=', 0], ['currentCompany', '=', 0]];
-                $orSearch = [['nextRegiment', '=', 0], ['nextCompany', '=', 0]];
+                $search = [['nextRegiment', '=', 0], ['nextCompany', '=', 0]];
                 break;
             case 10:
                 $search = [];
                 break;
         }
 
-        $transfers = UnitTransfer::where($search, ['approved', '=', 0])->orWhere($orSearch, ['approved', '=', 0])->get();
+        $transfers = UnitTransfer::where($search, ['approved', '=', $approved])->get();
         $ranks = Rank::all()->toArray();
 
         $data = array();

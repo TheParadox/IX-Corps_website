@@ -95,7 +95,7 @@ Route::post('/procRank/{rankID}', [RanksFormController::class, 'update']);
 
 ////////////////////// /{unitType}/{unitID} ////////////NOMINATIONS/REQUESTS list/view/approve
 
-Route::get('/awardNom', [AwardNominationsController::class, 'index'])->name('awardNominationsList');
+Route::get('/awardNomList/{regimentID}/{approved}', [AwardNominationsController::class, 'index'])->name('awardNominationsList');
 Route::get('/awardNom/{nominationID}', [AwardNominationsController::class, 'specific'])->name('specificAwardNomination');
 Route::post('/awardNom/{nominationID}', [AwardNominationsController::class, 'reviewed']);
 
@@ -107,7 +107,7 @@ Route::get('/rankNom', [RankNominationsController::class, 'index'])->name('ranks
 Route::get('/rankNom/{nominationID}', [RankNominationsController::class, 'specific'])->name('specificRanksNomination');
 Route::post('/rankNom/{nominationID}', [RankNominationsController::class, 'reviewed']);
 
-Route::get('/transfers', [UnitTransfersController::class, 'index'])->name('transfersList');
+Route::get('/transfers/{companyID}/{approved}', [UnitTransfersController::class, 'index'])->name('transfersList');
 Route::get('/transfers/{transferID}', [UnitTransfersController::class, 'specific'])->name('specificTransfer');
 Route::post('/transfers/{transferID}', [UnitTransfersController::class, 'reviewed']);
 

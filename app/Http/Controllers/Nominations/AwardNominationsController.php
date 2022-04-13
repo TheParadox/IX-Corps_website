@@ -12,15 +12,15 @@ use App\Models\Award;
 
 class AwardNominationsController extends Controller
 {
-    public function index()
+    public function index($regiment, $approved)
     {
         switch(auth()->user()->permissions) {
             case 0:
-                return redirect()->route('home');
             case 1:
             case 2:
             case 3:
-                $search = ['company', '=', auth()->user()->company_id];
+                return redirect()->route('home');
+                //$search = ['company', '=', auth()->user()->company_id];
                 break;
             case 4:
                 $search = ['regiment', '=', auth()->user()->regiment_id];
@@ -37,7 +37,7 @@ class AwardNominationsController extends Controller
                 break;
         }
 
-        $nominations = NominateAward::where($search, ['approved', '=', 0])->get();
+        $nominations = NominateAward::where($search, ['approved', '=', $approved])->get();
         $ranks = Rank::all()->toArray();
 
         $data = array();
