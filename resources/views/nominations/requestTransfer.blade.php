@@ -49,19 +49,9 @@
                 </div>
 
                 <div class="mb-4">
-                    <textarea name="unitError" id="unitError"
-                    class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('unitError') border-red-500 @enderror" value="{{ old('unitError') }}"></textarea>
-
-                    @error('unitError')
-                        <div class="text-red-500 mt-2 text-sm">
-                            {{ $message }}
-                        </div>
-                    @enderror
-                </div>
-                <div class="mb-4">
                     <label for="unit" class="">Unit to be transfered to:</label>
                     <select type="select" name="unit" id="unit" placeholder="Unit"
-                    class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="">
+                    class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('unitError') border-red-500 @enderror" value="">
 
                     <option hidden disabled selected value> -- select an option -- </option>
 
@@ -76,6 +66,11 @@
                     @endforeach
 
                     </select>
+                    @error('unitError')
+                        <div class="text-red-500 mt-2 text-sm">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
 
 

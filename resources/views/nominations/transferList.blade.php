@@ -13,10 +13,12 @@
                         Transferee: <a href="{{ route('member', ['memberID' => $req['userID']]) }}" class="text-blue-700">{{ $req['username'] }}</a>
                     </li>
                     <li>
-                        Transfer From: 
+                        Transfer From: <a href="{{ route('regiment', ['regimentID' => $req['currentRegimentID']]) }}" class="text-blue-700">{{ $req['currentRegimentName'] }}</a> - 
+                                        <a href="{{ route('company', ['companyID' => $req['currentCompanyID']]) }}" class="text-blue-700">{{ $req['currentCompanyName'] }}</a>
                     </li>
                     <li>
-                        Transfer To: 
+                        Transfer To: <a href="{{ route('regiment', ['regimentID' => $req['nextRegimentID']]) }}" class="text-blue-700">{{ $req['nextRegimentName'] }}</a> - 
+                                        <a href="{{ route('company', ['companyID' => $req['nextCompanyID']]) }}" class="text-blue-700">{{ $req['nextCompanyName'] }}</a>
                     </li>
                     <li>
                         Requestor: <a href="{{ route('member', ['memberID' => $req['requesterID']]) }}" class="text-blue-700">{{ $req['requesterName'] }}</a>

@@ -100,6 +100,7 @@ class UnitTransfersFormController extends Controller
 
         $transfer->save();
 
+        return redirect()->route('transferRequest');
     }
 
     public function edit(Request $request, $nominationID)

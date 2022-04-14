@@ -67,12 +67,12 @@ class UnitTransfersController extends Controller
             $data[$r]['username'] = $ranks[ $transferee['rank_id'] - 1]['abrv'] . ' ' . $transferee['name'];
 
             $data[$r]['currentRegimentID'] =  $currentRegiment['id'];
-            $data[$r]['currentRegimentName'] = $currentRegiment['abvr'];
+            $data[$r]['currentRegimentName'] = $currentRegiment['abrv'];
             $data[$r]['currentCompanyID'] =  $currentCompany['id'];
             $data[$r]['currentCompanyName'] = $currentCompany['letter'];
 
             $data[$r]['nextRegimentID'] =  $nextRegiment['id'];
-            $data[$r]['nextRegimentName'] = $nextRegiment['abvr'];
+            $data[$r]['nextRegimentName'] = $nextRegiment['abrv'];
             $data[$r]['nextCompanyID'] =  $nextCompany['id'];
             $data[$r]['nextCompanyName'] = $nextCompany['letter'];
 
@@ -87,7 +87,73 @@ class UnitTransfersController extends Controller
 
     public function specific(Request $request, $transferID)
     {
+        $data = UnitTransfer::find($transferID);
+        $ranks = Rank::all()->toArray();
+
+        $nominee = User::find($data['transferee']);
+        $nominator = User::find($data['requester']);
+
+        $currentCompany = Company::find($data['currentCompany']);
+        $currentRegiment = Regiment::find($data['currentRegiment']);
+        $currentSigner = User::find($data['currentCO']);
+
+
+        $nextCompany = Company::find($data['nextCompany']);
+        $nextRegiment = Regiment::find($data['nextRegiment']);
+        $nextSigner = User::find($data['nextCO']);
         
+
+        $extra = array();
+        $extra['approved'] = 0;
+        $extra['approvedReason'] = "";
+
+        $extra['nomineeName'] = $ranks[ $nominee['rank_id'] - 1 ]['abrv'] . ' ' . $nominee['name'];
+        $extra['nominatorName'] = $ranks[ $nominator['rank_id'] - 1 ]['abrv'] . ' ' . $nominator['name'];
+        if($currentSigner === null){
+            $extra['currentSigner'] =  null;
+        } else {
+            $extra['currentSigner'] = $ranks[ $currentSigner['rank_id'] - 1 ]['abrv'] . ' ' . $currentSigner['name'];
+            
+            if(auth()->user()->id == $currentSigner['id']){
+                $extra['approved'] = $data['currentApproval'];
+                $extra['approvedReason'] = $data['currentReason'];
+            }
+        }
+        if($nextSigner === null){
+            $extra['nextSigner'] =  null;
+        } else {
+            $extra['nextSigner'] = $ranks[ $nextSigner['rank_id'] - 1 ]['abrv'] . ' ' . $nextSigner['name'];
+
+            if(auth()->user()->id == $nextSigner['id']){
+                $extra['approved'] = $data['nextApproval'];
+                $extra['approvedReason'] = $data['nextReason'];
+            }
+        }
+
+
+        if($currentCompany === null){
+            $extra['currentCompany'] =  null;
+        } else {
+            $extra['currentCompany'] = $currentCompany['letter'];
+        }
+        if($currentRegiment === null){
+            $extra['currentRegiment'] =  null;
+        } else {
+            $extra['currentRegiment'] = $currentRegiment['abrv'];
+        }
+
+        if($nextCompany === null){
+            $extra['nextCompany'] =  null;
+        } else {
+            $extra['nextCompany'] = $nextCompany['letter'];
+        }
+        if($nextRegiment === null){
+            $extra['nextRegiment'] =  null;
+        } else {
+            $extra['nextRegiment'] = $nextRegiment['abrv'];
+        }
+
+        return view('nominations.transferSpecific')->with('data', $data)->with('extra', $extra);
     }
 
     public function reviewed(Request $request, $transferID)
