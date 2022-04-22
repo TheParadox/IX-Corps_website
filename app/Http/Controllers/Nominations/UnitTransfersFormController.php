@@ -84,13 +84,13 @@ class UnitTransfersFormController extends Controller
 
             'currentCompany' => $oldComp->id,
             'currentRegiment' => $oldReg->id,
-            'currentCO' => $CO,
+            'currentCO' => 0,
             'currentApproval' => 0,
             'currentReason' => null,
     
             'nextCompany' => $newComp->id,
             'nextRegiment' => $newReg->id,
-            'nextCO' => $newComp->co_id,
+            'nextCO' => 0,
             'nextApproval' => 0,
             'nextReason' => null,
     
@@ -100,7 +100,7 @@ class UnitTransfersFormController extends Controller
 
         $transfer->save();
 
-        return redirect()->route('transferRequest');
+        return redirect()->route('specificTransfer', ['transferID' => $transfer->id]);
     }
 
     public function edit(Request $request, $nominationID)
@@ -110,7 +110,48 @@ class UnitTransfersFormController extends Controller
 
     public function update(Request $request, $nominationID)
     {
+        $transfer = UnitTransfer::find($nominationID);
+
+        if((auth()->user()->regiment_id == $transfer->currentRegiment) && (auth()->user()->company_id == $transfer->currentCompany)){
+            $transfer->currentCO = auth()->user()->id;
+            $transfer->currentApproval = $request->approved; 
+            $transfer->currentReason = $request->approvedReason;
+        } else if((auth()->user()->regiment_id == $transfer->nextRegiment) && (auth()->user()->company_id == $transfer->nextCompany)){
+            $transfer->nextCO = auth()->user()->id;
+            $transfer->nextApproval = $request->approved; 
+            $transfer->nextReason = $request->approvedReason;
+        }
         
+        $transfer->save();
+
+        if(($transfer->nextApproval == 1) && ($transfer->currentApproval == 1)){
+            $member = User::find($transfer->transferee);
+            $currentCompany = Company::find($transfer->currentCompany);
+            $nextCompany = Company::find($transfer->nextCompany);
+
+            $member->regiment_id = $transfer->nextRegiment;
+            $member->company_id = $transfer->nextCompany;
+            $member->save();
+
+            $troops = $currentCompany->troops;
+            $jsonTroops = json_decode($troops, true);
+
+            if(($key = array_search($member->id, $jsonTroops['troops'])) !== NULL){
+                unset($jsonTroops['troops'][$key]);
+                $currentCompany->troops = $jsonTroops;
+            }
+
+            $currentCompany->save();
+
+            $troops = $nextCompany->troops;
+            $jsonTroops = json_decode($troops, true);
+            $jsonTroops['troops'][] = $member->id;
+            $nextCompany->troops = $jsonTroops;
+
+            $nextCompany->save();
+        }
+
+        return redirect()->route('specificTransfer', ['transferID' => $nominationID]);
     }
 
 }

@@ -76,7 +76,7 @@
 
                 </ul>
 
-                @if (auth()->user()->permissions >= $data['requiredApprovalPermission'])
+                @if (auth()->user()->permissions >= 3)
                     <form method="POST" action="{{ route('editTransferRequest', ['transferID' => $data['id']]) }}">
                         @csrf
         

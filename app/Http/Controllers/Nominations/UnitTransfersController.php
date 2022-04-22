@@ -111,6 +111,8 @@ class UnitTransfersController extends Controller
         $extra['nominatorName'] = $ranks[ $nominator['rank_id'] - 1 ]['abrv'] . ' ' . $nominator['name'];
         if($currentSigner === null){
             $extra['currentSigner'] =  null;
+            $extra['approved'] = null;
+            $extra['approvedReason'] = null; 
         } else {
             $extra['currentSigner'] = $ranks[ $currentSigner['rank_id'] - 1 ]['abrv'] . ' ' . $currentSigner['name'];
             
@@ -121,6 +123,8 @@ class UnitTransfersController extends Controller
         }
         if($nextSigner === null){
             $extra['nextSigner'] =  null;
+            $extra['approved'] = null;
+            $extra['approvedReason'] = null; 
         } else {
             $extra['nextSigner'] = $ranks[ $nextSigner['rank_id'] - 1 ]['abrv'] . ' ' . $nextSigner['name'];
 
