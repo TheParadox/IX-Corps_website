@@ -149,6 +149,12 @@ class UnitTransfersFormController extends Controller
             $nextCompany->troops = $jsonTroops;
 
             $nextCompany->save();
+
+        }
+
+        if(($transfer->nextApproval > 0) && ($transfer->currentApproval > 0)){
+            $transfer->approved = 1;
+            $transfer->save();
         }
 
         return redirect()->route('specificTransfer', ['transferID' => $nominationID]);

@@ -32,6 +32,7 @@ class CreateNominateUnitsTable extends Migration
 
             $table->unsignedBigInteger('requester')->default(0);
             $table->binary('reason')->nullable;
+            $table->integer('approved')->default(0);
 
             $table->timestamps();
         });

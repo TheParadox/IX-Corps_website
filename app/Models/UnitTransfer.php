@@ -32,5 +32,6 @@ class UnitTransfer extends Model
 
         'requester',
         'reason',
+        'approved',
     ];
 }

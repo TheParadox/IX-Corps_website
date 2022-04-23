@@ -14,7 +14,7 @@ use App\Models\Regiment;
 
 class UnitTransfersController extends Controller
 {
-    public function index($regiment, $approved)
+    public function index($company, $approved)
     {
         switch(auth()->user()->permissions) {
             case 0:
@@ -23,7 +23,7 @@ class UnitTransfersController extends Controller
             case 2:
             case 3:
             case 4:
-                if($regiment == auth()->user()->company_id) {
+                if($company == auth()->user()->company_id) {
                     $search = ['currentCompany', '=', auth()->user()->company_id];
                 } else {
                     $search = ['nextCompany', '=', auth()->user()->company_id];
@@ -37,15 +37,18 @@ class UnitTransfersController extends Controller
             case 7:
             case 8:
             case 9:
-                $search = [['currentRegiment', '=', 0], ['currentCompany', '=', 0]];
-                $search = [['nextRegiment', '=', 0], ['nextCompany', '=', 0]];
-                break;
             case 10:
-                $search = [];
+                // $search = [['currentRegiment', '=', 0], ['currentCompany', '=', 0]];
+                // $search = [['nextRegiment', '=', 0], ['nextCompany', '=', 0]];
+                if($company == auth()->user()->company_id) {
+                    $search = ['currentCompany', '=', auth()->user()->company_id];
+                } else {
+                    $search = ['nextCompany', '=', auth()->user()->company_id];
+                }
                 break;
         }
 
-        $transfers = UnitTransfer::where($search, ['approved', '=', $approved])->get();
+        $transfers = UnitTransfer::where([$search, ['approved', '=', $approved]])->get();
         $ranks = Rank::all()->toArray();
 
         $data = array();
