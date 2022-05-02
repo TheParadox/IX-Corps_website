@@ -29,12 +29,13 @@
                 </li>
 
             </ul>
-            @if (auth()->user()->permissions > 1)
-                <div class="pt-4">
-                    <a href="{{ route('editAward', ['awardID' => $data['id'] ]) }}" class="text-blue-600">Edit</a>
-                </div>
-            @endif
-
+            @auth
+                @if (auth()->user()->permissions > 1)
+                    <div class="pt-4">
+                        <a href="{{ route('editAward', ['awardID' => $data['id'] ]) }}" class="text-blue-600">Edit</a>
+                    </div>
+                @endif
+            @endauth
         </div>
     </div>
 @endsection

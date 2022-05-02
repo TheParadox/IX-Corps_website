@@ -80,21 +80,21 @@
                 @endif
             </ul>
 
-
-            @if (auth()->user()->permissions > 3)
-                @if (auth()->user()->regiment_id == $data['id'])
-                    <div class="pt-4">
-                        <a href="{{ route('editCompany', ['companyID' => $data['id'] ]) }}" class="text-blue-600">Edit</a>
-                    </div>
-                    <div class="pt-4">
-                        <a href="{{ route('transfersList', ['companyID' => $data['id'], 'approved' => 0 ]) }}" class="text-blue-600">Pending Transfer Requests</a>
-                    </div>
-                    <div class="pt-4">
-                        <a href="{{ route('transfersList', ['companyID' => $data['id'], 'approved' => 1 ]) }}" class="text-blue-600">Decided Transfer Requests</a>
-                    </div>
+            @auth
+                @if (auth()->user()->permissions > 3)
+                    @if (auth()->user()->regiment_id == $data['id'])
+                        <div class="pt-4">
+                            <a href="{{ route('editCompany', ['companyID' => $data['id'] ]) }}" class="text-blue-600">Edit</a>
+                        </div>
+                        <div class="pt-4">
+                            <a href="{{ route('transfersList', ['companyID' => $data['id'], 'approved' => 0 ]) }}" class="text-blue-600">Pending Transfer Requests</a>
+                        </div>
+                        <div class="pt-4">
+                            <a href="{{ route('transfersList', ['companyID' => $data['id'], 'approved' => 1 ]) }}" class="text-blue-600">Decided Transfer Requests</a>
+                        </div>
+                    @endif
                 @endif
-            @endif
-
+            @endauth
         </div>
     </div>
 @endsection

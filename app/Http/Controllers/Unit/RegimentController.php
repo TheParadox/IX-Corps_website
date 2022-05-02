@@ -77,7 +77,7 @@ class RegimentController extends Controller
 
         //'companies',
 
-        return view('unit.regiment')->with('data', $data)->with('advisors', $advisors)->with('companies', $companies)->with('strength', $regStrength);
+        return view('unit.regiment')->with('data', $data)->with('advisors', $advisors)->with('companies', $companies)->with('strength', $regStrength)->with('regID', $regimentID);
     }
 
 }

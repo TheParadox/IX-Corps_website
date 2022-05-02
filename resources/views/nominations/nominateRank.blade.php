@@ -19,11 +19,6 @@
                             </div>
                         </li>
                     @endif
-                    @if (auth()->user()->permissions > 2)
-                        <li>
-                            <a href="{{ route('nominatePosition') }}" class="p-3">Nominate Position</a>
-                        </li>
-                    @endif
                     @if (auth()->user()->permissions > 1)
                         <li>
                             <a href="{{ route('transferRequest') }}" class="p-3">Transfer Request</a>
@@ -49,8 +44,8 @@
                 </div>
 
                 <div class="mb-4">
-                    <label for="award" class="">Rank:</label>
-                    <select type="select" name="award" id="award" placeholder="award"
+                    <label for="rank" class="">Rank:</label>
+                    <select type="select" name="rank" id="rank" placeholder="rank"
                     class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="">
 
                     <option hidden disabled selected value> -- select an option -- </option>

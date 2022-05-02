@@ -17,11 +17,6 @@
                                 <a href="{{ route('nominateRank') }}" class="p-3">Nominate Promotion</a>
                         </li>
                     @endif
-                    @if (auth()->user()->permissions > 2)
-                        <li>
-                            <a href="{{ route('nominatePosition') }}" class="p-3">Nominate Position</a>
-                        </li>
-                    @endif
                     @if (auth()->user()->permissions > 1)
                         <li>
                             <div class="bg-blue-200 border-2 w-full rounded-lg">

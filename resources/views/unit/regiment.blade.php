@@ -24,6 +24,8 @@
                         <a href="{{ route('member', ['memberID' => $data->co_id]) }}" class="text-blue-700">{{ $data->co_name }}</a>
                     @else
                         Vacant
+                        - 
+                        <a href="{{ route('nominatePosition', ['posID' => 9, 'unitType' => 0, 'unitID' => $regID]) }}" class="text-blue-700">Promote</a>
                     @endif
                 </li>
                 <li>
@@ -32,6 +34,8 @@
                     <a href="{{ route('member', ['memberID' => $data->xo_id]) }}" class="text-blue-700">{{ $data->xo_name }}</a>
                 @else
                     Vacant
+                    - 
+                    <a href="{{ route('nominatePosition', ['posID' => 8, 'unitType' => 0, 'unitID' => $regID]) }}" class="text-blue-700">Promote</a>
                 @endif
                     
                 </li>
@@ -41,6 +45,8 @@
                         <a href="{{ route('member', ['memberID' => $data->sgtMaj_id]) }}" class="text-blue-700">{{ $data->sgtmaj_name }}</a>
                     @else
                         Vacant
+                        - 
+                        <a href="{{ route('nominatePosition', ['posID' => 6, 'unitType' => 0, 'unitID' => $regID]) }}" class="text-blue-700">Promote</a>
                     @endif
                 </li>
                 <li>
@@ -82,21 +88,22 @@
 
             </ul>
 
-            @if (auth()->user()->permissions > 3)
+            @auth
+                @if (auth()->user()->permissions > 3)
 
-                @if (auth()->user()->regiment_id == $data['id'])
-                    <div class="pt-4">
-                        <a href="{{ route('editRegiment', ['regimentID' => $data['id'] ]) }}" class="text-blue-600">Edit</a>
-                    </div>
-                    <div class="pt-4">
-                        <a href="{{ route('awardNominationsList', ['regimentID' => $data['id'], 'approved' => 0 ]) }}" class="text-blue-600">Pending Awards</a>
-                    </div>
-                    <div class="pt-4">
-                        <a href="{{ route('awardNominationsList', ['regimentID' => $data['id'], 'approved' => 1 ]) }}" class="text-blue-600">Decided Awards</a>
-                    </div>
+                    @if (auth()->user()->regiment_id == $data['id'])
+                        <div class="pt-4">
+                            <a href="{{ route('editRegiment', ['regimentID' => $data['id'] ]) }}" class="text-blue-600">Edit</a>
+                        </div>
+                        <div class="pt-4">
+                            <a href="{{ route('awardNominationsList', ['regimentID' => $data['id'], 'approved' => 0 ]) }}" class="text-blue-600">Pending Awards</a>
+                        </div>
+                        <div class="pt-4">
+                            <a href="{{ route('awardNominationsList', ['regimentID' => $data['id'], 'approved' => 1 ]) }}" class="text-blue-600">Decided Awards</a>
+                        </div>
+                    @endif
                 @endif
-            @endif
-
+            @endauth
         </div>
     </div>
 @endsection

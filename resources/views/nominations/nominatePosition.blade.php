@@ -5,40 +5,13 @@
 @section('content')
     <div class="flex justify-center">     
         <div class="w-8/12 bg-white p-6 rounded-lg">
-            <nav class="p-4 pb-10 bg-white flex justify-between">
-                <ul class="flex items-center">
-                    @if (auth()->user()->permissions > 0)
-                        <li>
-                            <a href="{{ route('nominateAward') }}" class="p-3">Nominate Award</a>
-                        </li>
-                    @endif
-                    @if (auth()->user()->permissions > 2)
-                        <li>
-                            <a href="{{ route('nominateRank') }}" class="p-3">Nominate Promotion</a>
-                        </li>
-                    @endif
-                    @if (auth()->user()->permissions > 2)
-                        <li>
-                            <div class="bg-blue-200 border-2 w-full rounded-lg">
-                                <a href="{{ route('nominatePosition') }}" class="p-3">Nominate Position</a>     
-                            </div>
-                        </li>
-                    @endif
-                    @if (auth()->user()->permissions > 1)
-                        <li>
-                            <a href="{{ route('transferRequest') }}" class="p-3">Transfer Request</a>
-                        </li>
-                    @endif
-                </ul>
-    
-            </nav>
 
-            <form method="POST" action="{{ route('nominatePosition') }}">
+            <form method="POST" action="{{ route('createPositionNomination') }}">
                 @csrf
 
                 <div class="mb-4">
                     <label for="nominee" class="">Nominee:</label>
-                    <input type="text" name="nominee" id="title" placeholder="Who should get the award"
+                    <input type="text" name="nominee" id="title" placeholder="Who should get the position"
                     class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('nominee') border-red-500 @enderror" value="{{ old('nominee') }}">
 
                     @error('nominee')
@@ -49,25 +22,13 @@
                 </div>
 
                 <div class="mb-4">
-                    <label for="award" class="">Award:</label>
-                    <select type="select" name="award" id="award" placeholder="award"
-                    class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="">
-
-                    <option hidden disabled selected value> -- select an option -- </option>
-
-                    @if ($data)
-                        @foreach ($data as $award)   
-                            <option value="{{ $award['id'] }}">{{ $award['title'] }}</option>
-                        @endforeach
-                    @endif
-
-                    </select>
+                    <label for="position" class="">Position: {{ $position }}</label>
                 </div>
 
 
                 <div class="mb-4">
                     <label for="reason" class="">Reason:</label>
-                    <textarea name="reason" id="reason" placeholder="Why they deserve this award?"
+                    <textarea name="reason" id="reason" placeholder="Why they deserve this position?"
                     class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('reason') border-red-500 @enderror" value="{{ old('reason') }}"></textarea>
 
                     @error('reason')

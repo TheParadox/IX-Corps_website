@@ -18,12 +18,13 @@
                 </li>
 
             </ul>
-            @if (auth()->user()->permissions > 2)
-                <div class="pt-4">
-                    <a href="{{ route('editRank', ['rankID' => $data['id'] ]) }}" class="text-blue-600">Edit</a>
-                </div>
-            @endif
-
+            @auth
+                @if (auth()->user()->permissions > 2)
+                    <div class="pt-4">
+                        <a href="{{ route('editRank', ['rankID' => $data['id'] ]) }}" class="text-blue-600">Edit</a>
+                    </div>
+                @endif
+            @endauth
         </div>
     </div>
 @endsection

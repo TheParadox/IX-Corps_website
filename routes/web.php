@@ -117,8 +117,8 @@ Route::post('/nomAward', [NominateAwardsFormController::class, 'store']);
 Route::get('/nomAward/{nominationID}', [NominateAwardsFormController::class, 'edit'])->name('editAwardNomination');
 Route::post('/nomAward/{nominationID}', [NominateAwardsFormController::class, 'update']);
 
-Route::get('/nomPos', [NominatePositionsFormController::class, 'index'])->name('nominatePosition');
-Route::post('/nomPos', [NominatePositionsFormController::class, 'store']);
+Route::get('/nomPos/{posID}/{unitType}/{unitID}', [NominatePositionsFormController::class, 'index'])->name('nominatePosition');
+Route::post('/nomPos', [NominatePositionsFormController::class, 'store'])->name('createPositionNomination');
 Route::get('/nomPos/{nominationID}', [NominatePositionsFormController::class, 'edit'])->name('editPositionNomination');
 Route::post('/nomPos/{nominationID}', [NominatePositionsFormController::class, 'update']);
 
