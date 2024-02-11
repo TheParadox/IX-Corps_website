@@ -1,3 +1,6 @@
+#Note:
+This project is no longer in development - was decided it was not needed. The code here is very much in early prototype phase.
+
 # IX-Corps Website
 
 While the repository is set to public - this IS **NOT freeware**. If you want a similar site, or to use this for your group, please message me.
